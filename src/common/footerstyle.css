@@ -1,0 +1,26 @@
+.footer,
+.push {
+    height: 40px; /* Set the fixed height of the footer here */
+}
+.footer {
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    line-height: 40px; /* Vertically center the text there */
+    text-align: center;
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
+.footer div{
+    display: flex;
+    justify-content: space-evenly;
+}
+.footer a{
+    text-decoration: none;
+    color: inherit;
+}
+.footer a:hover{
+    color: var(--color-font-dark);
+}
