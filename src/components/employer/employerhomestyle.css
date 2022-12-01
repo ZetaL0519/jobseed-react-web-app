@@ -1,0 +1,61 @@
+.search {
+    margin: 1rem;
+    padding: 3rem;
+}
+
+.search-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    font-size: 3.5rem;
+}
+
+.search-button {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+
+.background-image {
+  background: 50% 50% / cover;
+  background-image: url(../../assets/backgroundhome.jpg);
+  background-repeat: no-repeat;
+}
+
+.roomslist-center {
+  padding: 5px;
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 30px;
+}
+
+.div-background {
+    background-color: #90EE90;
+    height: 200px;
+    padding:2px;
+    margin:2 2 2 2;
+}
+
+.text-title {
+    margin-top: 40px;
+    text-align:center;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.text-description {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.section-title {
+  text-align: center;
+}

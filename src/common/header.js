@@ -1,11 +1,13 @@
 import React from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
+import {Link} from "react-router-dom";
 import "./headerstyle.css";
 
 const Header = () => {
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">JobSeed</a>
+          <Link className="navbar-brand title-color" to="/">JobSeed</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -23,22 +25,27 @@ const Header = () => {
                 </div>
 
             </div>
-
             <ul className="navbar-nav float-right ">
               <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
+                <Link to="/employer" className="nav-link">Employer</Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Sign In</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Log In</a>
-              </li>
+
             </ul>
 
+           <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <i className="fas fa-user-circle"></i>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Link to="/login" className="dropdown-item">Log In</Link>
+                  <Link to="/register" className="dropdown-item">Register</Link>
+                  <Link to="/profile" className="dropdown-item">Profile</Link>
+                </Dropdown.Menu>
+           </Dropdown>
           </div>
         </nav>
         </>

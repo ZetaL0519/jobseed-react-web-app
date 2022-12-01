@@ -3,7 +3,7 @@ import "./homesearchstyle.css";
 
 const Search = () => {
     return (
-        <div className="search container">
+        <div className="search container background-image">
             <h1 className="search-heading">Find Your Ideal Job</h1>
             <div className="search-job-location">
                 <div className="row">
@@ -19,11 +19,12 @@ const Search = () => {
                 </div>
             </div>
             <div className="search-button">
-                <button className="btn btn-outline-success">
+                <button className="btn btn-dark">
                     Find
                 </button>
             </div>
         </div>
+
     )
 }
 export default Search;

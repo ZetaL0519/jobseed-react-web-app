@@ -12,7 +12,7 @@
 .navbar-light .navbar-brand:focus {
     font-weight: 700;
     font-size: 1.75rem;
-    color: var(--color-font-dark);
+    color: rgb(0,100,0);
 }
 .navbar .navbar-brand span {
     color: #4298e7;
@@ -48,4 +48,8 @@
     flex-direction: row;
     display: flex;
     list-style: none;
+}
+
+.title-color {
+    color: rgb(0,100,0);
 }

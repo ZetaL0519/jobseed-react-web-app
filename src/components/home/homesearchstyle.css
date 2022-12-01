@@ -20,6 +20,7 @@
 }
 .search-bar {
     margin-bottom: 8px;
+    background-color: white;
 }
 .search-bar input,
 .search-bar button {
@@ -52,4 +53,10 @@
     display: flex;
     justify-content: center;
     width: auto;
+}
+
+.background-image {
+  background: 50% 50% / cover;
+  background-image: url(../../assets/backgroundhome.jpg);
+  background-repeat: no-repeat;
 }
