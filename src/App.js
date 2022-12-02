@@ -10,20 +10,36 @@ import Login from "./components/authentication/login.js";
 import Register from "./components/authentication/register.js"
 import RegisterEmployer from "./components/authentication/registeremployer.js";
 import './App.css';
+import UserProfile from "./components/profile/user-profile";
+import {configureStore} from "@reduxjs/toolkit";
+import {Provider} from "react-redux";
+import CurrentUser from "./components/profile/current-user";
+import usersReducer from "./reducers/users-reducer";
+
+const store = configureStore({
+    reducer: {
+        users: usersReducer,
+    }
+})
 
 function App() {
   return (
         <div className="container">
-            <BrowserRouter>
-            <Header/>
-            <Routes>
-                <Route path="/" exact={true} element={<><Search/><HomeIntro/></>} />
-                <Route path="/employer" exact={true} element={<EmployerHome/>} />
-                <Route path="/register" exact={true} element={<Register/>} />
-                <Route path="/login" exact={true} element={<Login/>} />
-            </Routes>
-            <Footer/>
-            </BrowserRouter>
+            <Provider store={store}>
+                <CurrentUser>
+                    <BrowserRouter>
+                        <Header/>
+                        <Routes>
+                            <Route path="/" exact={true} element={<><Search/><HomeIntro/></>} />
+                            <Route path="/employer" exact={true} element={<EmployerHome/>} />
+                            <Route path="/register" exact={true} element={<Register/>} />
+                            <Route path="/login" exact={true} element={<Login/>}/>
+                            <Route path="/profile" exact={true} element={<UserProfile/>}/>
+                        </Routes>
+                        <Footer/>
+                    </BrowserRouter>
+                </CurrentUser>
+            </Provider>
         </div>
   );
 }

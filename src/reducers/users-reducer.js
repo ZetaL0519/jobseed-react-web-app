@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllUsersThunk, loginThunk, logoutThunk, profileThunk, registerThunk} from "../services/user-thunks";
-
+import {findAllUsersThunk, loginThunk, logoutThunk, profileThunk, registerThunk} from "../services/users-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
