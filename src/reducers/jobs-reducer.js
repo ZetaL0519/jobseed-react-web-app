@@ -6,7 +6,7 @@ const initialState = {
     loading: true
 }
 
-const jobsReducer = createSlice({
+const JobsReducer = createSlice({
     name: 'jobs',
     initialState: initialState,
     extraReducers: {
@@ -25,4 +25,4 @@ const jobsReducer = createSlice({
     }
 })
 
-export default jobsReducer.reducer;
+export default JobsReducer.reducer;

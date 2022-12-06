@@ -16,7 +16,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import CurrentUser from "./components/profile/current-user";
 import usersReducer from "./reducers/users-reducer";
-import SearchJobReducer from "./reducers/jobs-reducer";
+import SearchJobReducer from "./reducers/search-jobs-reducer";
 
 const store = configureStore({
     reducer: {

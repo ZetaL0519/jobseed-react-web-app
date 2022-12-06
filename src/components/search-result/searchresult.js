@@ -27,6 +27,7 @@ const SearchResult = () => {
                     }}
                     value={searchTerm}/>
             </div>
+
             <div className="search-result-grid">
                 <div className="roomslist-center">
                     {
