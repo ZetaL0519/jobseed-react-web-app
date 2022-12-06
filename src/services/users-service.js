@@ -1,12 +1,13 @@
 import axios from "axios";
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:4000';
+const USER_URL = 'http://localhost:4000/api/users';
 
 export const createUser = async () => {
 
 }
 
 export const findAllUsers = async () => {
-    const response = await axios.get('http://localhost:3000/users')
+    const response = await axios.get(USER_URL)
     return response.data
 }
 
