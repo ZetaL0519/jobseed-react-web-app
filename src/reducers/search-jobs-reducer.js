@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findJobBySearchTerm} from "../services/search-jobs-service";
-import {findJobBySearchTermThunk} from "../services/search-jobs-thunks";
+import {findJobBySearchTermThunk, findJobByLocationTitleTermThunk} from "../services/search-jobs-thunks";
 
 const initialState = {
    jobs: [],
@@ -8,11 +7,14 @@ const initialState = {
 }
 
 const SearchJobReducer = createSlice({
-   name: 'jobsearch',
+   name: 'searchjobs',
    initialState,
    extraReducers: {
        [findJobBySearchTermThunk.fulfilled]: (state, action) => {
            state.jobs = action.payload
+       },
+       [findJobByLocationTitleTermThunk.fulfilled]: (state, action) => {
+            state.jobs = action.payload
        }
    }
 })
