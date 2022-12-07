@@ -16,8 +16,7 @@ const UserProfile = () => {
             <div className="user-profile container">
                 {/*To do: Design public and private profile */}
                 <>
-                    <i className="fas fa-chevron-left fa-2x"/>
-                    To do: a go back function
+                <i className="fas fa-chevron-left fa-2x"/>
                 <h1 className="profile-heading">
                     Welcome to Alice Wonderland's Profile
                 </h1>

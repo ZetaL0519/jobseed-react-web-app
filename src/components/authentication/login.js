@@ -1,8 +1,20 @@
 import './authstyle.css';
-import React from 'react';
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {loginThunk} from "../../services/users-thunks.js";
 
 const LogIn = () => {
+    const [username, setUsername] = useState('dan')
+    const [password, setPassword] = useState('dan123')
+    const [error, setError] = useState(null)
+    const {currentUser} = useSelector((state) => state.users)
+    const dispatch = useDispatch()
+    const handleLoginBtn = () => {
+        setError(null)
+        const loginUser = {username, password}
+        dispatch(loginThunk(loginUser))
+    }
     return (
         <div className="container">
             <div className="login-form">
@@ -18,6 +30,7 @@ const LogIn = () => {
                                id="inputUsername"
                                type="username"
                                placeholder="Username"
+                               onChange={(e) => setUsername(e.target.value)}
                                required autoFocus />
                     </div>
                     <div className="form-group">
@@ -29,12 +42,13 @@ const LogIn = () => {
                                id="inputPassword"
                                type="password"
                                placeholder="Password"
+                               onChange={(e) => setPassword(e.target.value)}
                                required />
                     </div>
                     <div className="form-group">
                         <button className="btn btn-success btn-block"
                                 type="submit"
-                                onClick="location.href='../profile/profile.template.client.html'">
+                                onClick={handleLoginBtn}>
                             Log in
                         </button>
                     </div>
@@ -61,6 +75,10 @@ const LogIn = () => {
                     </Link>
                 </div>
             </div>
+            {
+                currentUser &&
+                <h2>Welcome {currentUser.username}</h2>
+            }
         </div>
     )
 }
