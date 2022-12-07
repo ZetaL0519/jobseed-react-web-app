@@ -1,1 +1,9 @@
+.left-button {
+    display:inline-block;
+    float:left
+}
 
+.right-button {
+    display: inline-block;
+    float: right;
+}

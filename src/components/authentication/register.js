@@ -1,8 +1,40 @@
 import './authstyle.css';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {registerThunk} from "../../services/users-thunks.js";
+import {current} from "@reduxjs/toolkit";
+import {Navigate} from "react-router";
 
 const Register = () => {
+    const {currentUser} = useSelector((state) => state.users)
+    const [username, setUsername] = useState('alice123')
+    const [firstname, setFirstname] = useState('alice')
+    const [lastname, setLastname] = useState('wonder')
+    const [dateofbirth, setDateofbirth] = useState('01/01/2002')
+    const [email, setemail] = useState('alice@gmail')
+    const [password, setPassword] = useState('123123')
+    const [confirmPassword, setConfirmPassword] = useState('123123')
+    const [error, setError] = useState(null)
+    const [user, setUser] = useState({})
+    const [accountType, setaccountType] = useState('SEEKER');
+
+    const dispatch = useDispatch()
+    const handleRegisterBtn = () => {
+        if (password !== confirmPassword) {
+            setError('Passwords must match')
+            return
+        }
+        setError(null)
+        const newUser = {username, password, firstname, lastname, email,dateofbirth, accountType}
+        dispatch(registerThunk(newUser))
+    }
+
+    if(currentUser) {
+        return (<Navigate to={'/profile'}/>)
+    }
+
     return (
         <div className="container">
             <div className="signup-form">
@@ -18,6 +50,7 @@ const Register = () => {
                         </label>
                         <div className="col-sm-6">
                             <input type="text"
+                                   onChange={(e) => setFirstname(e.target.value)}
                                    className="form-control"
                                    id="inputFirstName"
                                    name="first_name"
@@ -30,6 +63,7 @@ const Register = () => {
                         </label>
                         <div className="col-sm-6">
                             <input type="text"
+                                   onChange={(e) => setLastname(e.target.value)}
                                    className="form-control"
                                    id="inputLastName"
                                    name="last_name"
@@ -46,6 +80,7 @@ const Register = () => {
                                className="sr-only">
                             Username</label>
                         <input className="form-control"
+                               onChange={(e) => setUsername(e.target.value)}
                                id="inputUsername"
                                type="text" name="username"
                                placeholder="Username"
@@ -61,6 +96,7 @@ const Register = () => {
                             Date
                         </label>
                         <input className="form-control"
+                               onChange={(e) => setDateofbirth(e.target.value)}
                                type="date"
                                id="inputDOB"
                                data-inputmask="'alias': 'date'" />
@@ -74,29 +110,14 @@ const Register = () => {
                             Email address
                         </label>
                         <input className="form-control"
+                               onChange={(e) => setemail(e.target.value)}
                                id="inputEmail"
                                type="email"
                                name="email"
                                placeholder="Email"
                                required />
                     </div>
-                    <div className="form-group">
-                <span className="form-control-icon">
-                    <i className="fas fa-phone"
-                       aria-hidden="true">
-                    </i>
-                </span>
-                        <label htmlFor="inputPhone"
-                               className="sr-only">
-                            Phone Number
-                        </label>
-                        <input className="form-control"
-                               id="inputPhone"
-                               type="tel"
-                               name="phone"
-                               placeholder="Phone Number"
-                               required />
-                    </div>
+
                     <div className="form-group">
                 <span className="form-control-icon">
                     <i className="fas fa-key"></i>
@@ -105,19 +126,21 @@ const Register = () => {
                                className="sr-only">
                             Password</label>
                         <input className="form-control"
+                               onChange={(e) => setPassword(e.target.value)}
                                id="inputPassword"
                                type="password"
                                placeholder="Password"
                                required />
                     </div>
                     <div className="form-group">
-                <span className="form-control-icon">
-                    <i className="fas fa-key"></i>
-                </span>
+                    <span className="form-control-icon">
+                        <i className="fas fa-key"></i>
+                    </span>
                         <label htmlFor="inputConfirmPassword"
                                className="sr-only">
                             Confirm Password</label>
                         <input className="form-control"
+                               onChange={(e) => setConfirmPassword(e.target.value)}
                                id="inputConfirmPassword"
                                type="password"
                                placeholder="Confirm Password"
@@ -130,12 +153,14 @@ const Register = () => {
                         <select id="selectRole"
                                 className="col-sm-5"
                                 name="role"
-                                required>
-                            <option value="seeker"
-                                    selected>
+                                onChange={(e) => setaccountType(e.target.value)}
+                                required
+                                >
+                            <option value="SEEKER"
+                                   >
                                 Seeker
                             </option>
-                            <option value="Employer">
+                            <option value="EMPLOYER">
                                 Employer
                             </option>
                         </select>
@@ -144,18 +169,19 @@ const Register = () => {
                         <label className="checkbox-inline">
                             <input type="checkbox" required />
                             &nbsp;I accept the&nbsp;
-                            <a href="#">
+                            <span>
                                 Term of Use
-                            </a>
+                            </span>
                             &nbsp;&&nbsp;
-                            <a href="#">
+                            <span>
                                 Privacy Policy
-                            </a>
+                            </span>
                         </label>
                     </div>
                     <div className="form-group">
                         <button className="btn btn-success btn-block"
-                                type="submit">
+                                type="submit"
+                                onClick={handleRegisterBtn}>
                             Sign Up
                         </button>
                     </div>
