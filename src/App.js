@@ -13,9 +13,10 @@ import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
 import Users from "./components/admin/adminboard.js"
+import UserProfile from "./components/profile/user-profile.js";
+import ProtectedRoute from "./components/authentication/protected-route.js"
 
 import './App.css';
-import UserProfile from "./components/profile/user-profile";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import CurrentUser from "./components/profile/current-user";
@@ -43,7 +44,7 @@ function App() {
                             <Route path="/employer" exact={true} element={<EmployerHome/>} />
                             <Route path="/register" exact={true} element={<Register/>} />
                             <Route path="/login" exact={true} element={<Login/>}/>
-                            <Route path="/profile" exact={true} element={<UserProfile/>}/>
+                            <Route path="/profile" exact={true} element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>
                             <Route path="/search/:location/:title" element=<SearchLocationTitle/>/>
                             <Route path="/jobs" element={<JobResult/>}/>

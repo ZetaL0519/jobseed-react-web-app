@@ -8,16 +8,15 @@ import {current} from "@reduxjs/toolkit";
 import {Navigate} from "react-router";
 
 const Register = () => {
-    const {currentUser} = useSelector((state) => state.users)
+    const {currentUser, isLoggedIn} = useSelector((state) => state.users)
     const [username, setUsername] = useState('alice123')
-    const [firstname, setFirstname] = useState('alice')
-    const [lastname, setLastname] = useState('wonder')
-    const [dateofbirth, setDateofbirth] = useState('01/01/2002')
+    const [firstName, setFirstName] = useState('alice')
+    const [lastName, setLastName] = useState('wonder')
+    const [dateOfBirth, setdateOfBirth] = useState('01/01/2002')
     const [email, setemail] = useState('alice@gmail')
     const [password, setPassword] = useState('123123')
     const [confirmPassword, setConfirmPassword] = useState('123123')
     const [error, setError] = useState(null)
-    const [user, setUser] = useState({})
     const [accountType, setaccountType] = useState('SEEKER');
 
     const dispatch = useDispatch()
@@ -27,7 +26,7 @@ const Register = () => {
             return
         }
         setError(null)
-        const newUser = {username, password, firstname, lastname, email,dateofbirth, accountType}
+        const newUser = {username, password, firstName, lastName, email,dateOfBirth, accountType}
         dispatch(registerThunk(newUser))
     }
 
@@ -50,7 +49,7 @@ const Register = () => {
                         </label>
                         <div className="col-sm-6">
                             <input type="text"
-                                   onChange={(e) => setFirstname(e.target.value)}
+                                   onChange={(e) => setFirstName(e.target.value)}
                                    className="form-control"
                                    id="inputFirstName"
                                    name="first_name"
@@ -63,7 +62,7 @@ const Register = () => {
                         </label>
                         <div className="col-sm-6">
                             <input type="text"
-                                   onChange={(e) => setLastname(e.target.value)}
+                                   onChange={(e) => setLastName(e.target.value)}
                                    className="form-control"
                                    id="inputLastName"
                                    name="last_name"
@@ -96,7 +95,7 @@ const Register = () => {
                             Date
                         </label>
                         <input className="form-control"
-                               onChange={(e) => setDateofbirth(e.target.value)}
+                               onChange={(e) => setdateOfBirth(e.target.value)}
                                type="date"
                                id="inputDOB"
                                data-inputmask="'alias': 'date'" />

@@ -1,47 +1,51 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {createJobsThunk, deleteJobThunk, findAllJobsThunk} from "../../services/jobs-thunks";
+import {findAllJobsThunk} from "../../services/jobs-thunks";
 
 const JobResult = () => {
     const {jobs} = useSelector((state) => state.jobs)
-    const [job, setJob] = useState({jobtitle: 'New Job'})
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllJobsThunk())
     }, [])
+    console.log(jobs.length)
     return(
-        <>
-            <h1>Jobs</h1>
-            <ul className="list-group">
-                <li className="list-group-item">
-                    <button className="btn btn-success float-end" onClick={() => {
-                        dispatch(createJobsThunk(
-                            {
-                                jobtitle: job.jobtitle
-                            }
-                        ))
-                    }}>Create</button>
-                    <input
-                        className="form-control w-75"
-                        onChange={(e) =>
-                            setJob({...job, jobtitle: e.target.value})}
-                        value={job.jobtitle}/>
-                </li>
-                {
-                    jobs.map((job) =>
-                        <li className="list-group-item"
-                            key={job._id}>
-                            <i onClick={() => {
-                                dispatch(deleteJobThunk(job._id))
-                            }}
-                                className="bi bi-trash float-end"></i>
+       <div className="container">
+            <h2>All {jobs.length} Jobs Available</h2>
 
-                            {job.companyname}
-                        </li>
-                    )
-                }
-            </ul>
-        </>
+            <div className="search-result-grid mt-3">
+                <div className="roomslist-center">
+                    {
+                       jobs.map(job =>
+                       <div key={job._id} className="card border-success mb-3">
+                             <div className="card-header bg-transparent border-success">{job.companyname}</div>
+                             <div className="card-body text-success">
+                               <h5 className="card-title">{job.jobtitle}</h5>
+                               <p className="card-text">{job.location}</p>
+                               <p className="card-text">{job.salary}</p>
+                             </div>
+                             <div className="card-footer bg-transparent border-success">
+                                    <div className="left-button">
+                                   <button className="btn btn-success"
+                                           type="submit"
+                                           >
+                                       Apply
+                                   </button>
+                                   </div>
+                                   <div className="right-button">
+                                  <button className="btn btn-secondary"
+                                          type="submit"
+                                          >
+                                      Dismiss
+                                  </button>
+                                  </div>
+                             </div>
+                           </div>
+                       )
+                    }
+                </div>
+            </div>
+        </div>
     )
 }
 

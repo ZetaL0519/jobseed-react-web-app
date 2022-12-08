@@ -44,7 +44,9 @@ const Header = () => {
               <li className="nav-item">
                 <Link to="/employer" className="nav-link">Employer</Link>
               </li>
-
+              <li className="nav-item">
+                <Link to="/jobs" className="nav-link">Jobs</Link>
+              </li>
             </ul>
 
            <Dropdown>

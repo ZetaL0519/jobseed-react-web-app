@@ -1,12 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllUsersThunk, loginThunk, logoutThunk, profileThunk, registerThunk} from "../services/users-thunks";
+import {findAllUsersThunk, findUserByIdThunk, loginThunk, logoutThunk, profileThunk, registerThunk} from "../services/users-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
     initialState: {
-        loading: false,
         users: [],
+        isLoggedIn: false,
         currentUser: null,
+        publicProfile: null,
         error: null
     },
     reducers: {
@@ -15,15 +16,22 @@ const usersReducer = createSlice({
         [findAllUsersThunk.fulfilled]: (state, action) => {
             state.users = action.payload
         },
+        [findUserByIdThunk.fulfilled]: (state, action) => {
+            state.loading = false
+            state.publicProfile = action.payload
+        },
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.isLoggedIn = true
         },
         [loginThunk.rejected]: (state, action) => {
             state.error = action.payload
             state.currentUser = null
+            state.isLoggedIn = false
         },
         [registerThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.isLoggedIn = true
         },
         [registerThunk.rejected]: (state, action) => {
             state.error = action.payload
@@ -31,6 +39,7 @@ const usersReducer = createSlice({
         },
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
+            state.isLoggedIn = false
         },
         [profileThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload

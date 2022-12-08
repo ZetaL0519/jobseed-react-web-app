@@ -3,18 +3,35 @@ import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../../services/users-thunks.js";
+import {useNavigate} from "react-router";
 
 const LogIn = () => {
-    const [username, setUsername] = useState('dan')
-    const [password, setPassword] = useState('dan123')
+    const navigate = useNavigate()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
+
     const handleLoginBtn = () => {
-        setError(null)
-        const loginUser = {username, password}
-        dispatch(loginThunk(loginUser))
-    }
+        if (username === '') {
+            setError('Please enter a valid username');
+        } else if (password === '') {
+            setError('Please enter a valid password');
+        } else {
+            const loginUser = {username, password, isAdmin};
+            dispatch(loginThunk(loginUser))
+            if (loginUser.username === "admin" && loginUser.password === "admin123"){
+                navigate('/admin')
+            } else if (currentUser) {
+                setError(null)
+                navigate('/profile')
+            } else {
+                setError('Invalid Credentials')
+            }
+        }
+    };
     return (
         <div className="container">
             <div className="login-form">

@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = 'localhost:4000/api/jobs'
+const BASE_URL = '//localhost:4000/api/jobs'
 
 export const createJob = async(newJob) => {
     const response = await axios.post(BASE_URL, newJob)
