@@ -7,9 +7,8 @@ import {useNavigate} from "react-router";
 
 const UserProfile = () => {
     const navigate = useNavigate()
-
     const {currentUser} = useSelector((state) => state.users)
-
+    console.log(currentUser)
     const dispatch = useDispatch()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())

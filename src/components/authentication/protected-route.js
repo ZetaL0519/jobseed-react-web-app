@@ -1,8 +1,11 @@
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router";
 import {useSelector} from "react-redux";
 
 const ProtectedRoute = ({children}) => {
+    const navigate = useNavigate()
     const {currentUser} = useSelector(state => state.users);
+
+    console.log(currentUser)
     if (currentUser) {
         return(children);
     } else {

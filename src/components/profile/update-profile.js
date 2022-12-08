@@ -1,158 +1,84 @@
-// import React, {useEffect, useState} from 'react'
-// import {connect} from 'react-redux'
-// import {Helmet} from 'react-helmet'
-//
-// const UserProfileUpdate = (
-//     {
-//         currUser = {},
-//         updateUser,
-//         findUserById
-//     }) => {
-//
-//     const [user, setUser] = useState()
-//     const [password, setPassword] = useState('')
-//
-//     useEffect(() => {
-//         if (localStorage.getItem('isLoggedIn') !== 'true') {
-//             // redirect to login page if not logged in
-//             history.push('/login')
-//         } else {
-//             if (currUser._id === undefined) {
-//                 findUserById(localStorage.getItem('uid'))
-//             }
-//             setUser(currUser)
-//             setPassword(currUser.password)
-//         }
-//     }, [currUser])
-//
-//     // const submitUpdateRequest = () => {
-//     //     if (password.length < 1) {
-//     //         updateUser(user._id, user)
-//     //     } else {
-//     //         updateUser(user._id, {...user, password: password})
-//     //     }
-//     //     alert('Profile has been updated successfully!')
-//     // }
-//
-//     return (
-//         <div className="user-profile-update container">
-//             <Helmet>
-//                 <title>Update Profile | Cupola</title>
-//             </Helmet>
-//             {
-//                 user !== undefined &&
-//                 <div className="signup-form">
-//                     <form action="">
-//                         <h2 className="text-center">
-//                             Update Profile
-//                         </h2>
-//                         <hr />
-//                         <div className="form-group row">
-//                             <label htmlFor="inputFirstName"
-//                                    className="sr-only">
-//                                 First Name
-//                             </label>
-//                             <div className="col-sm-6">
-//                                 <input type="text"
-//                                        className="form-control"
-//                                        id="inputFirstName"
-//                                        name="first_name"
-//                                        placeholder="First Name"
-//                                        // value={user.firstName}
-//                                        // onChange={(e) => setUser({...user, firstName: e.target.value})}
-//                                        required autoFocus />
-//                             </div>
-//                             <label htmlFor="inputLastName"
-//                                    className="sr-only">
-//                                 Last Name
-//                             </label>
-//                             <div className="col-sm-6">
-//                                 <input type="text"
-//                                        className="form-control"
-//                                        id="inputLastName"
-//                                        name="last_name"
-//                                        placeholder="Last Name"
-//                                        // value={user.lastName}
-//                                        // onChange={(e) => setUser({...user, lastName: e.target.value})}
-//                                        required />
-//                             </div>
-//                         </div>
-//                         <div className="form-group">
-//                         <span className="form-control-icon">
-//                             <i className="fas fa-envelope"/>
-//                         </span>
-//                             <label htmlFor="inputEmail"
-//                                    className="sr-only">
-//                                 Email address
-//                             </label>
-//                             <input className="form-control"
-//                                    id="inputEmail"
-//                                    type="email"
-//                                    name="email"
-//                                    placeholder="Email"
-//                                    value={user.email}
-//                                    onChange={(e) => setUser({...user, email: e.target.value})}
-//                                    required />
-//                         </div>
-//                         <div className="form-group">
-//                         <span className="form-control-icon">
-//                             <i className="fas fa-phone"
-//                                aria-hidden="true">
-//                             </i>
-//                         </span>
-//                             <label htmlFor="inputPhone"
-//                                    className="sr-only">
-//                                 Phone Number
-//                             </label>
-//                             <input className="form-control"
-//                                    id="inputPhone"
-//                                    type="tel"
-//                                    name="phone"
-//                                    placeholder="Phone Number"
-//                                    // value={user.phone}
-//                                    // onChange={(e) => setUser({...user, phone: e.target.value})}
-//                                    required />
-//                         </div>
-//                         <div className="form-group">
-//                         <span className="form-control-icon">
-//                             <i className="fas fa-key"/>
-//                         </span>
-//                             <label htmlFor="inputPassword"
-//                                    className="sr-only">
-//                                 Password</label>
-//                             <input className="form-control"
-//                                    id="inputPassword"
-//                                    type="password"
-//                                    placeholder="Password"
-//                                    onChange={(e) => setPassword(e.target.value)}
-//                                    required />
-//                         </div>
-//                         <div className="form-group">
-//                             <button className="btn btn-primary btn-block"
-//                                     type="submit"
-//                                     onClick={(e) => {
-//                                         e.preventDefault()
-//                                         // submitUpdateRequest()
-//                                     }}>
-//                                 Update Profile
-//                             </button>
-//                         </div>
-//                     </form>
-//                 </div>
-//             }
-//         </div>
-//     )
-// }
-//
-// const stpm = (state) => ({
-//     currUser: state.userReducer.currUser
-// })
-//
-// const dtpm = (dispatch) => ({
-//     findUserById: (uid) => user.findUserById(dispatch, uid),
-//     updateUser: (uid, user) => userActions.updateUser(dispatch, uid, user)
-// })
-//
-// export default connect
-// (stpm, dtpm)
-// (UserProfileUpdate)
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, Link} from "react-router-dom";
+import {updateUserThunk} from "../../services/users-thunks";
+
+const EditProfile = () => {
+  const currentUser = useSelector(state => state.users);
+  console.log(currentUser)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [firstName, setFirstName] = useState(currentUser.firstName);
+  const [lastName, setLastName] = useState(currentUser.lastName);
+  const [email, setEmail] = useState(currentUser.email);
+  const [location, setLocation] = useState(currentUser.location);
+  const [biography, setBiography] = useState(currentUser.biography);
+  const [dateOfBirth, setDateOfBirth] = useState(new Date(currentUser.dateOfBirth).toLocaleDateString("en-CA"));
+  const saveClickHandler = () => {
+    const newUser = {
+        ...currentUser,
+        firstName: firstName,
+        lastName: lastName,
+        email: setEmail,
+        location: setLocation,
+        biography: setBiography,
+        dateOfBirth: setDateOfBirth
+    }
+    dispatch(updateUserThunk(newUser))
+    navigate('/profile')
+  }
+ return(
+      <div>
+        <div className="row mt-2 px-3 mb-2">
+          <div className="col-1">
+            <Link to="/profile" className="ms-3 fg-white"><i className="fa fa-times"/></Link>
+          </div>
+
+           <div className="col-9 ">
+                <h5 className="fw-bold ms-4">Edit Profile</h5>
+           </div>
+           <div className="col-2">
+                <Link to="/profile" className="btn btn-dark  rounded-pill" onClick={saveClickHandler}>Save</Link>
+           </div>
+        </div>
+
+
+        <div className="bioSection p-2">
+          <div className="form-floating">
+            <input id="first-name" value={firstName} placeholder={currentUser.firstName}
+                  className="form-control border-1 "
+                  onChange={(event) => setFirstName(event.target.value)}/>
+            <label htmlFor="first-name">First Name</label>
+          </div>
+          <div className="form-floating mt-3">
+            <input id="last-name" value={lastName} placeholder={currentUser.lastName}
+                  className="form-control border-1 "
+                  onChange={(event) => setLastName(event.target.value)}/>
+            <label htmlFor="last-name">Last Name</label>
+          </div>
+          <div className="form-floating mt-3">
+          <textarea id="bio" value={biography} placeholder="Bio"
+                    className="form-control border-1 "
+                    onChange={(event) => setBiography(event.target.value)}/>
+            <label htmlFor="bio">Bio</label>
+          </div>
+          <div className="form-floating mt-3">
+            <input id="location" value={location} placeholder="Location"
+                  className="form-control border-1"
+                  onChange={(event) => setLocation(event.target.value)}/>
+            <label htmlFor="location">Location</label>
+          </div>
+          <div className="form-floating mt-3">
+            <input id="date-of-birth" value={dateOfBirth} placeholder="Date of Birth"
+                  className="form-control border-1" type="date"
+                  onChange={(event) => setDateOfBirth(event.target.value)}/>
+            <label htmlFor="date-of-birth">Date of Birth</label>
+          </div>
+        </div>
+
+      </div>
+  );
+};
+
+export default EditProfile;

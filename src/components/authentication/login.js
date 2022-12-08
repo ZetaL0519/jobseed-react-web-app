@@ -15,22 +15,16 @@ const LogIn = () => {
     const dispatch = useDispatch()
 
     const handleLoginBtn = () => {
-        if (username === '') {
-            setError('Please enter a valid username');
-        } else if (password === '') {
-            setError('Please enter a valid password');
+        const loginUser = {username, password, isAdmin};
+        dispatch(loginThunk(loginUser))
+        setError(null)
+        navigate('/profile')
+        if (loginUser.isAdmin){
+            navigate('/admin')
         } else {
-            const loginUser = {username, password, isAdmin};
-            dispatch(loginThunk(loginUser))
-            if (loginUser.username === "admin" && loginUser.password === "admin123"){
-                navigate('/admin')
-            } else if (currentUser) {
-                setError(null)
-                navigate('/profile')
-            } else {
-                setError('Invalid Credentials')
-            }
+            navigate('/profile')
         }
+
     };
     return (
         <div className="container">
