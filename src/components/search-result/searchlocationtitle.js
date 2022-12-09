@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import {findJobByLocationTitleTermThunk} from "../../services/search-jobs-thunks";
 import "./search.style.css";
+import {SearchItem} from "./searchitem.js"
 
 const SearchLocationTitle = ({
     initLocation = '',
@@ -28,32 +29,8 @@ const SearchLocationTitle = ({
                 <div className="roomslist-center">
                     {
                        jobs.map(job =>
-                       <div key={job._id} className="card border-success mb-3">
-                             <div className="card-header bg-transparent border-success">{job.companyname}</div>
-                             <div className="card-body text-success">
-                               <h5 className="card-title">{job.jobtitle}</h5>
-                               <p className="card-text">{job.location}</p>
-                               <p className="card-text">{job.salary}</p>
-                             </div>
-                             <div className="card-footer bg-transparent border-success">
-                                    <div className="left-button">
-                                   <button className="btn btn-success"
-                                           type="submit"
-                                           >
-                                       Apply
-                                   </button>
-                                   </div>
-                                   <div className="right-button">
-                                  <button className="btn btn-secondary"
-                                          type="submit"
-                                          >
-                                      Dismiss
-                                  </button>
-                                  </div>
-                             </div>
-                           </div>
+                       <SearchItem key={job._id} job={job}/>
                        )
-
                     }
                 </div>
             </div>

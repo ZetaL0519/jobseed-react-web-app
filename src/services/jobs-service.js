@@ -1,5 +1,6 @@
 import axios from "axios";
 const BASE_URL = '//localhost:4000/api/jobs'
+const USER_URL = '//localhost:4000/api/users'
 
 export const createJob = async(newJob) => {
     const response = await axios.post(BASE_URL, newJob)
@@ -19,4 +20,10 @@ export const deleteJob = async(jid) => {
     const response = await axios.delete(`${BASE_URL}/${jid}`)
     const status = response.data
     return jid
+}
+
+export const findJobPostedbyUser = async() => {
+    const response = await axios.get(`${USER_URL}/${uid}/jobs`)
+    const jobs = response.data
+    return jobs
 }

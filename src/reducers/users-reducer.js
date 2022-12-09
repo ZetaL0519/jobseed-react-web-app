@@ -5,6 +5,7 @@ const usersReducer = createSlice({
     name: 'users',
     initialState: {
         users: [],
+        loading: true,
         isLoggedIn: false,
         currentUser: null,
         publicProfile: null,
@@ -43,9 +44,15 @@ const usersReducer = createSlice({
         },
         [profileThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            state.loading = false
+        },
+        [profileThunk.pending]: (state, action) => {
+            state.currentUser = null
+            state.loading = true
         },
         [profileThunk.rejected]: (state, action) => {
             state.error = action.payload
+            state.loading = false
             state.currentUser = null
         },
         [updateUserThunk.fulfilled]: (state, action) => {

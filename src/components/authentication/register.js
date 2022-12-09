@@ -1,11 +1,11 @@
 import './authstyle.css';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../../services/users-thunks.js";
 import {current} from "@reduxjs/toolkit";
-import {Navigate} from "react-router";
+import {Navigate,useNavigate} from "react-router";
 
 const Register = () => {
     const {currentUser, isLoggedIn} = useSelector((state) => state.users)
@@ -20,6 +20,7 @@ const Register = () => {
     const [accountType, setaccountType] = useState('SEEKER');
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleRegisterBtn = () => {
         if (password !== confirmPassword) {
             setError('Passwords must match')
@@ -28,6 +29,7 @@ const Register = () => {
         setError(null)
         const newUser = {username, password, firstName, lastName, email,dateOfBirth, accountType}
         dispatch(registerThunk(newUser))
+        return (<Navigate to={'/login'}/>)
     }
 
     if(currentUser) {

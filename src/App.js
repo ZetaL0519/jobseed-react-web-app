@@ -13,7 +13,7 @@ import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
 import Users from "./components/admin/adminboard.js"
-import UserProfile from "./components/profile/user-profile.js";
+import ProfileComponent from "./components/profile";
 import EditProfile from "./components/profile/update-profile.js"
 import ProtectedRoute from "./components/authentication/protected-route.js"
 
@@ -24,12 +24,14 @@ import CurrentUser from "./components/profile/current-user";
 import usersReducer from "./reducers/users-reducer";
 import SearchJobReducer from "./reducers/search-jobs-reducer";
 import JobsReducer from "./reducers/jobs-reducer";
+import CollectsReducer from "./reducers/collect-reducer";
 
 const store = configureStore({
     reducer: {
         users: usersReducer,
         searchjobs: SearchJobReducer,
-        jobs: JobsReducer
+        jobs: JobsReducer,
+        collects: CollectsReducer
     }
 })
 
@@ -38,14 +40,14 @@ function App() {
         <div className="container">
             <Provider store={store}>
                 <CurrentUser>
-                    <BrowserRouter>
+                <BrowserRouter>
                         <Header/>
                         <Routes>
                             <Route path="/" exact={true} element={<><Search/><HomeIntro/></>} />
                             <Route path="/employer" exact={true} element={<EmployerHome/>} />
                             <Route path="/register" exact={true} element={<Register/>} />
                             <Route path="/login" exact={true} element={<Login/>}/>
-                            <Route path="/profile" exact={true} element={<UserProfile/>}/>
+                            <Route path={'/profile'} element={<ProtectedRoute><ProfileComponent/></ProtectedRoute>}/>
                             <Route path={'/profile/edit'}
                                    element={<EditProfile/>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>
@@ -54,8 +56,8 @@ function App() {
                             <Route path="/admin" element={<Users/>}/>
                         </Routes>
                         <Footer/>
-                    </BrowserRouter>
-                </CurrentUser>
+               </BrowserRouter>
+               </CurrentUser>
             </Provider>
         </div>
   );

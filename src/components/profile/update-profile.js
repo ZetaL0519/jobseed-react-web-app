@@ -4,7 +4,8 @@ import {useNavigate, Link} from "react-router-dom";
 import {updateUserThunk} from "../../services/users-thunks";
 
 const EditProfile = () => {
-  const currentUser = useSelector(state => state.users);
+  const {currentUser} = useSelector(state => state.users);
+  console.log(1)
   console.log(currentUser)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -15,6 +16,8 @@ const EditProfile = () => {
   const [location, setLocation] = useState(currentUser.location);
   const [biography, setBiography] = useState(currentUser.biography);
   const [dateOfBirth, setDateOfBirth] = useState(new Date(currentUser.dateOfBirth).toLocaleDateString("en-CA"));
+  console.log(1)
+  console.log(currentUser._id)
   const saveClickHandler = () => {
     const newUser = {
         ...currentUser,
@@ -58,19 +61,19 @@ const EditProfile = () => {
             <label htmlFor="last-name">Last Name</label>
           </div>
           <div className="form-floating mt-3">
-          <textarea id="bio" value={biography} placeholder="Bio"
+          <textarea id="bio" value={biography} placeholder={currentUser.biography}
                     className="form-control border-1 "
                     onChange={(event) => setBiography(event.target.value)}/>
             <label htmlFor="bio">Bio</label>
           </div>
           <div className="form-floating mt-3">
-            <input id="location" value={location} placeholder="Location"
+            <input id="location" value={location} placeholder={currentUser.location}
                   className="form-control border-1"
                   onChange={(event) => setLocation(event.target.value)}/>
             <label htmlFor="location">Location</label>
           </div>
           <div className="form-floating mt-3">
-            <input id="date-of-birth" value={dateOfBirth} placeholder="Date of Birth"
+            <input id="date-of-birth" value={dateOfBirth} placeholder={currentUser.dateOfBirth}
                   className="form-control border-1" type="date"
                   onChange={(event) => setDateOfBirth(event.target.value)}/>
             <label htmlFor="date-of-birth">Date of Birth</label>

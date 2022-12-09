@@ -3,28 +3,27 @@ import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../../services/users-thunks.js";
-import {useNavigate} from "react-router";
+import {useNavigate, Navigate} from "react-router";
 
 const LogIn = () => {
+
+    const {currentUser} = useSelector((state) => state.users)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState(null)
-    const {currentUser} = useSelector((state) => state.users)
-    const dispatch = useDispatch()
+    console.log(1)
 
     const handleLoginBtn = () => {
-        const loginUser = {username, password, isAdmin};
-        dispatch(loginThunk(loginUser))
-        setError(null)
-        navigate('/profile')
-        if (loginUser.isAdmin){
-            navigate('/admin')
-        } else {
-            navigate('/profile')
-        }
+        try {
+            dispatch(loginThunk({username, password, isAdmin}))
 
+            navigate('/profile')
+        } catch (e) {
+
+        }
     };
     return (
         <div className="container">

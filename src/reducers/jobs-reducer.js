@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createJobsThunk, deleteJobThunk, findAllJobsThunk} from "../services/jobs-thunks";
+import {createJobsThunk, deleteJobThunk, findAllJobsThunk, findJobPostedbyUserThunk} from "../services/jobs-thunks";
 
 const initialState = {
     jobs: [],
-    loading: true
+    loading: true,
 }
 
 const JobsReducer = createSlice({
@@ -22,6 +22,11 @@ const JobsReducer = createSlice({
                 return j._id !== action.payload
             })
         }
+//        [findJobPostedbyUserThunk.fulfilled]: (state, action) => {
+//            state.jobs = state.jobs.filter(j => {
+//                return j._id !== action.payload.id
+//            })
+//        }
     }
 })
 
