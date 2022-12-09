@@ -32,7 +32,7 @@ const Register = () => {
         return (<Navigate to={'/login'}/>)
     }
 
-    if(currentUser) {
+    if (currentUser) {
         return (<Navigate to={'/profile'}/>)
     }
 

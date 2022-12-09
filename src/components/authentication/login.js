@@ -14,19 +14,24 @@ const LogIn = () => {
     const [password, setPassword] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState(null)
-    console.log(1)
 
     const handleLoginBtn = () => {
-        try {
-            dispatch(loginThunk({username, password, isAdmin}))
+        dispatch(loginThunk({username, password, isAdmin}))
+    }
+    if (currentUser && !currentUser.isAdmin) {
+        return (<Navigate to={'/profile'}/>)
+    }
 
-            navigate('/profile')
-        } catch (e) {
+    if (currentUser && currentUser.isAdmin) {
+        return (<Navigate to={'/admin'}/>)
+    }
 
-        }
-    };
     return (
         <div className="container">
+            {
+                currentUser &&
+                <h2 >Welcome {currentUser.username}</h2>
+            }
             <div className="login-form">
                 <form action="">
                     <h2 className="text-center">Log In</h2>
@@ -57,7 +62,7 @@ const LogIn = () => {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-success btn-block"
-                                type="submit"
+                                type="button"
                                 onClick={handleLoginBtn}>
                             Log in
                         </button>
@@ -85,10 +90,6 @@ const LogIn = () => {
                     </Link>
                 </div>
             </div>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
-            }
         </div>
     )
 }

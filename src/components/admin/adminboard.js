@@ -1,20 +1,32 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {findAllUsersThunk} from "../../services/users-thunks";
+import {findAllUsersThunk, logoutThunk} from "../../services/users-thunks";
+import {useNavigate} from "react-router";
 
 const Users = () => {
+    const navigate = useNavigate()
     const {users, loading} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
     }, [])
 
+    const handleLogoutBtn = () => {
+        dispatch(logoutThunk())
+        navigate('/login')
+    }
+
     const handleDeleteUserBtn = () => {
         dispatch()
     }
     return(
         <>
-            <h1>{users.length } Registered Users </h1>
+            <h1>{users.length } Registered Users
+            <button
+                 className="btn btn-danger"
+                 onClick={handleLogoutBtn}>
+                 Logout
+            </button></h1>
             <ul className="list-group">
                 {
                     users.map((user) =>

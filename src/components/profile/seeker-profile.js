@@ -9,7 +9,6 @@ const SeekerProfile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {currentUser} = useSelector((state) => state.users)
-    console.log(currentUser)
 
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
