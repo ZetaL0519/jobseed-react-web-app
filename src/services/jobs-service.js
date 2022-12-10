@@ -15,7 +15,7 @@ export const findAllJobs = async() => {
 }
 
 export const findJobById = async(jid) => {
-    const response = await axios.get(`${BASE_URL}/${jid}`)
+    const response = await axios.get(`${BASE_URL}/onejob/${jid}`)
     const job = response.data;
     return job
 }

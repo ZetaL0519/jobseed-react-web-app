@@ -26,7 +26,6 @@ import usersReducer from "./reducers/users-reducer";
 import SearchJobReducer from "./reducers/search-jobs-reducer";
 import JobsReducer from "./reducers/jobs-reducer";
 import CollectsReducer from "./reducers/collect-reducer";
-import JobReducer from "./reducers/find-one-job-reducer";
 
 const store = configureStore({
     reducer: {
@@ -34,7 +33,6 @@ const store = configureStore({
         searchjobs: SearchJobReducer,
         jobs: JobsReducer,
         collects: CollectsReducer,
-        job: JobReducer
     }
 })
 

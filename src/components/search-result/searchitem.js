@@ -28,7 +28,7 @@ export const SearchItem = ({job}) => {
               <span className="left-button">{job.companyname}</span>
               <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i className="bi bi-star"></i></span></div>
               <div className="card-body text-success">
-                <Link to={`/jobs/${job._id}`} class="job-link">
+                <Link to={`/jobs/${job._id}`} className="job-link">
                     <h5 className="card-title">{job.jobtitle}</h5>
                 </Link>
                 <p className="card-text">{job.location}</p>
