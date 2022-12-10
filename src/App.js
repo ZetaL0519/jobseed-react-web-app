@@ -53,9 +53,12 @@ function App() {
                                    element={<EditProfile/>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>
                             <Route path="/search/:location/:title" element=<SearchLocationTitle/>/>
+
                             <Route path="/jobs" element={<JobResult/>}/>
                             <Route path="/jobs/:jid" element={<JobDetail/>}/>
-                            <Route path="/admin" element={<Users/>}/>
+
+                            <Route path="/admin" element={<ProtectedRoute><Users/>></ProtectedRoute>}/>
+
                         </Routes>
                         <Footer/>
                </BrowserRouter>
