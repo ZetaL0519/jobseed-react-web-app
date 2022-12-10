@@ -3,9 +3,9 @@ import {findAllJobs, createJob, deleteJob, findJobPostedbyUser, findJobById} fro
 
 export const createJobsThunk = createAsyncThunk(
     'createJob',
-    async (createJob) => {
-    console.log(createJob)
-    return await createJob(createJob.newJob, createJob.uid) }
+    async (createjob) => {
+    return await createJob(createjob.newJob, createjob.uid)
+}
 )
 
 export const findAllJobsThunk = createAsyncThunk(

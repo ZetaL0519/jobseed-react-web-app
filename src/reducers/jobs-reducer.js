@@ -5,6 +5,7 @@ const initialState = {
     jobs: [],
     loading: true,
     currentjob: null,
+    postjobs: null,
 }
 
 const JobsReducer = createSlice({
@@ -15,14 +16,14 @@ const JobsReducer = createSlice({
             state.jobs = action.payload
         },
         [createJobsThunk.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.jobs.push(action.payload)
         },
         [createJobsThunk.rejected]: (state, action) => {
-            console.log(action.payload)
-            console.log("wrong")
+            console.log(action.error)
         },
-
+        [findJobPostedbyUserThunk.fulfilled]: (state, action) =>{
+            state.postjobs = action.payload
+        },
         [deleteJobThunk.fulfilled]: (state, action) => {
             // const midx = state.findIndex(m => m._id === action.payload)
             state.jobs = state.jobs.filter(j => {

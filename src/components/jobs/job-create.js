@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Link,  useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
 import {createJobsThunk} from "../../services/jobs-thunks";
-import {useNavigate} from "react-router";
+import {useNavigate, Navigate} from "react-router";
 
 export const CreateJob = () => {
     const navigate = useNavigate()
@@ -15,19 +15,17 @@ export const CreateJob = () => {
     const [companyname, setCompanyname] = useState(currentUser.companyname)
     const [url, setUrl] = useState('')
     const [summary, setSummary] = useState('')
-    const [email, setEmail] = useState('')
     const uid = currentUser._id
     const createJobBtn = () => {
         const date = (new Date()).getTime() + ''
-        const newJob = {jobtitle, date, companyname, email, location, salary, url, summary}
-        console.log(newJob)
-        console.log(uid)
+        const newJob = {jobtitle, date, companyname, location, salary, url, summary}
         const createJob = {newJob: newJob, uid: uid}
         try {
             dispatch(createJobsThunk(createJob))
         } catch(e) {
-            console.log(e)
+            console.log("error:" + e)
         }
+        navigate('/profile')
     }
 
     return (

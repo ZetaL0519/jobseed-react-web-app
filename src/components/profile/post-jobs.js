@@ -4,34 +4,23 @@ import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {useNavigate, Navigate} from "react-router";
 import Apply from "../jobs/job-apply"
-import "./search.style.css";
+import "../search-result/search.style.css";
 
-export const SearchItem = ({job}) => {
+export const JobItem = ({job}) => {
     const {currentUser} = useSelector((state) => state.users)
     const [isCollect,setIsCollect] = useState(false)
     const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const addCollectBtn = (_id) => {
-        console.log(isCollect);
-        const collect = {uid: currentUser._id,jid:_id}
-        if(!isCollect && currentUser != null && currentUser.accountType === 'SEEKER') {
-            dispatch(userCollectJobThunk(collect))
-        }else if(isCollect && currentUser != null && currentUser.accountType === 'SEEKER') {
-            dispatch(userDisCollectJobThunk(collect))
-        }
-        document.getElementById('myButton').className = "bi bi-star-fill";
-        setIsCollect(!isCollect)
-    }
 
     return (
-        <div className="card border-success mb-3">
+        <div className="card border-success mb-3 cardsize">
               <div className="card-header bg-transparent border-success">
               <span className="left-button">{job.companyname}</span>
-              <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i id="myButton" className="bi bi-star"></i></span>
+              <span className="right-button update-pen"><Link to={`/jobs/${job._id}/edit`}><i className="bi bi-pencil"></i></Link></span>
               </div>
               <div className="card-body text-success">
-                <Link to={`/jobs/${job._id}`} className="job-link">
+                <Link to={`/applys/${job._id}`} className="job-link">
                     <h5 className="card-title">{job.jobtitle}</h5>
                 </Link>
                 <p className="card-text">{job.location}</p>
@@ -39,14 +28,8 @@ export const SearchItem = ({job}) => {
               </div>
               <div className="card-footer bg-transparent border-success">
                      <div className="left-button">
-                     {currentUser && <Apply uid={currentUser._id} jid={job._id}/>}
                     </div>
                     <div className="right-button">
-                   <button className="btn btn-secondary"
-                           type="submit"
-                           >
-                       Dismiss
-                   </button>
                    </div>
               </div>
         </div>

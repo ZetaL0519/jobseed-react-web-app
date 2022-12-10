@@ -3,8 +3,6 @@ const BASE_URL = '//localhost:4000/api/jobs'
 const USER_URL = '//localhost:4000/api/users'
 
 export const createJob = async(newJob, uid) => {
-    console.log(1)
-    console.log(newJob)
     const response = await axios.post(`${USER_URL}/${uid}/jobs`, newJob)
     const actualJob = response.data
     return actualJob

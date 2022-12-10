@@ -21,3 +21,4 @@ export const getAllCollectJobsThunk = createAsyncThunk(
         return await getAllCollectJobs(collect.uid)
     }
 )
+
