@@ -17,6 +17,7 @@ export const SearchItem = ({job}) => {
         }else if(isCollect && currentUser != null && currentUser.accountType === 'SEEKER') {
             dispatch(userDisCollectJobThunk(collect))
         }
+        document.getElementById('myButton').className = "bi bi-star-fill";
         setIsCollect(!isCollect)
     }
 
@@ -24,7 +25,8 @@ export const SearchItem = ({job}) => {
         <div className="card border-success mb-3">
               <div className="card-header bg-transparent border-success">
               <span className="left-button">{job.companyname}</span>
-              <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i className="bi bi-star"></i></span></div>
+              <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i id="myButton" className="bi bi-star"></i></span>
+              </div>
               <div className="card-body text-success">
                 <h5 className="card-title">{job.jobtitle}</h5>
                 <p className="card-text">{job.location}</p>

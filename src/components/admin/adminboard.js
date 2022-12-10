@@ -5,12 +5,12 @@ import {useNavigate} from "react-router";
 
 const Users = () => {
     const navigate = useNavigate()
-    const {users, loading} = useSelector((state) => state.users)
+    const {currentUser, users, loading} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
     }, [])
-
+    console.log(currentUser)
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
         navigate('/login')

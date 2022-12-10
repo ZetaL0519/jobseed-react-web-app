@@ -27,7 +27,8 @@ const SeekerProfile = () => {
                         </h4>
                         <div className="bioSection p-2">
                             <p className="fg-white pt-2">
-                                {currentUser.bio}
+                                <h4>Biography</h4>
+                                 <p>{currentUser.biography}</p>
                             </p>
                             <p>
                                 <i className="fa fa-map-marker me-2"></i>

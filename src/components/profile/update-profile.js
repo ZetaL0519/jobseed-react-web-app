@@ -5,8 +5,6 @@ import {updateUserThunk} from "../../services/users-thunks";
 
 const EditProfile = () => {
   const {currentUser} = useSelector(state => state.users);
-  console.log(1)
-  console.log(currentUser)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -15,21 +13,21 @@ const EditProfile = () => {
   const [email, setEmail] = useState(currentUser.email);
   const [location, setLocation] = useState(currentUser.location);
   const [biography, setBiography] = useState(currentUser.biography);
-  const [dateOfBirth, setDateOfBirth] = useState(new Date(currentUser.dateOfBirth).toLocaleDateString("en-CA"));
+  const [dateOfBirth, setDateOfBirth] = useState(currentUser.dateOfBirth);
   console.log(1)
   console.log(currentUser._id)
   const saveClickHandler = () => {
     const newUser = {
         ...currentUser,
         firstName: firstName,
+        email: email,
         lastName: lastName,
-        email: setEmail,
-        location: setLocation,
-        biography: setBiography,
-        dateOfBirth: setDateOfBirth
+        location: location,
+        biography: biography,
+        dateOfBirth: dateOfBirth
     }
     dispatch(updateUserThunk(newUser))
-    navigate('/profile')
+    navigate("../profile")
   }
  return(
       <div>
@@ -42,7 +40,7 @@ const EditProfile = () => {
                 <h5 className="fw-bold ms-4">Edit Profile</h5>
            </div>
            <div className="col-2">
-                <Link to="/profile" className="btn btn-dark  rounded-pill" onClick={saveClickHandler}>Save</Link>
+                <button className="btn btn-dark  rounded-pill" onClick={saveClickHandler}>Save</button>
            </div>
         </div>
 
@@ -60,6 +58,12 @@ const EditProfile = () => {
                   onChange={(event) => setLastName(event.target.value)}/>
             <label htmlFor="last-name">Last Name</label>
           </div>
+            <div className="form-floating mt-3">
+            <textarea id="email" value={email} placeholder={currentUser.email}
+                      className="form-control border-1 "
+                      onChange={(event) => setEmail(event.target.value)}/>
+              <label htmlFor="email">Email</label>
+            </div>
           <div className="form-floating mt-3">
           <textarea id="bio" value={biography} placeholder={currentUser.biography}
                     className="form-control border-1 "
