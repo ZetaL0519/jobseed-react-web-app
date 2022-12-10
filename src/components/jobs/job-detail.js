@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import {findJobByIdThunk} from "../../services/jobs-thunks";
+import Apply from "./job-apply";
 import "./job.css"
 
 const JobDetail = () => {
@@ -20,17 +21,12 @@ const JobDetail = () => {
                 <h2>{currentjob.jobtitle}</h2>
                 <br/>
                 <div className="job-detail">
-                <p className="text-success">    <span class="bi bi-file-post"> </span>{currentjob.companyname} </p>
-                <p className="text-success">    <span class="bi bi-calendar2-fill"> </span>{currentjob.date}</p>
-                <p className="text-success">    <span class="bi bi-building-fill"> </span>{currentjob.location}</p>
-                <p className="text-success">    <span class="bi bi-bank"> </span>{currentjob.salary}</p>
+                <p className="text-success">    <span className="bi bi-file-post"> </span>{currentjob.companyname} </p>
+                <p className="text-success">    <span className="bi bi-calendar2-fill"> </span>{currentjob.date}</p>
+                <p className="text-success">    <span className="bi bi-building-fill"> </span>{currentjob.location}</p>
+                <p className="text-success">    <span className="bi bi-bank"> </span>{currentjob.salary}</p>
                 <br/>
-                <button className="btn btn-success"
-                            type="submit"
-                            >
-                        Apply
-                    </button>
-                
+                {currentUser && <Apply uid={currentUser._id} jid={jid}/>}
                 <br/>
                 <br/>
                 <h2>About us</h2>

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {useNavigate, Navigate} from "react-router";
+import Apply from "../jobs/job-apply"
 import "./search.style.css";
 
 export const SearchItem = ({job}) => {
@@ -38,18 +39,14 @@ export const SearchItem = ({job}) => {
               </div>
               <div className="card-footer bg-transparent border-success">
                      <div className="left-button">
-                    <button className="btn btn-success"
-                            type="submit"
-                            >
-                        Apply
-                    </button>
+                     {currentUser && <Apply uid={currentUser._id} jid={job._id}/>}
                     </div>
                     <div className="right-button">
-                   <button className="btn btn-secondary"
+                   {/* <button className="btn btn-secondary"
                            type="submit"
                            >
                        Dismiss
-                   </button>
+                   </button> */}
                    </div>
               </div>
         </div>

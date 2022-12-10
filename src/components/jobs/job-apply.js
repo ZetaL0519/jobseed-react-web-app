@@ -1,17 +1,39 @@
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import { userApplyJobThunk, findOneApplyThunk } from "../../services/apply-thunks";
 
-export const apply = () => {
+const Apply = ({uid, jid}) => {
+    const dispatch = useDispatch()
+    const apply = {
+        uid: uid,
+        jid: jid
+    }
+    useEffect(() => {
+        dispatch(findOneApplyThunk(apply));
+    }, [])
 
+    const handleApply = () => {
+        dispatch(userApplyJobThunk(apply))
+    }
+    const {currentapply} = useSelector((state) => state.applys)
     return (
         <div>
-            <div className="left-button">
+            {currentapply && <div className="left-button">
+                    <button className="btn btn-secondary"
+                            type="submit" 
+                            >
+                        Applyed
+                    </button>
+            </div>}
+            {currentapply === null && <div className="left-button">
                     <button className="btn btn-success"
-                            type="submit"
+                            type="submit" onClick={handleApply}
                             >
                         Apply
                     </button>
-            </div>
+            </div>}
         </div>
     )
 }
 
-export default apply;
+export default Apply;

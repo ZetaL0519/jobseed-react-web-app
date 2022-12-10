@@ -26,6 +26,7 @@ import usersReducer from "./reducers/users-reducer";
 import SearchJobReducer from "./reducers/search-jobs-reducer";
 import JobsReducer from "./reducers/jobs-reducer";
 import CollectsReducer from "./reducers/collect-reducer";
+import ApplyReducer from "./reducers/apply-reducer";
 
 const store = configureStore({
     reducer: {
@@ -33,6 +34,7 @@ const store = configureStore({
         searchjobs: SearchJobReducer,
         jobs: JobsReducer,
         collects: CollectsReducer,
+        applys: ApplyReducer
     }
 })
 
@@ -57,7 +59,7 @@ function App() {
                             <Route path="/jobs" element={<JobResult/>}/>
                             <Route path="/jobs/:jid" element={<JobDetail/>}/>
 
-                            <Route path="/admin" element={<ProtectedRoute><Users/>></ProtectedRoute>}/>
+                            <Route path="/admin" element={<ProtectedRoute><Users/></ProtectedRoute>}/>
 
                         </Routes>
                         <Footer/>
