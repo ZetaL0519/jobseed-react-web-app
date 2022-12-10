@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {userCollectJobThunk, userDisCollectJobThunk} from "../services/collect-thunks";
+import {userCollectJobThunk, userDisCollectJobThunk, getAllCollectJobsThunk} from "../services/collect-thunks";
 
 const initialState = {
     collects: [],
@@ -16,7 +16,13 @@ const CollectsReducer = createSlice({
             state.collects = state.collects.filter(c => {
                 return (c._id !== action.payload.uid && c.job !== action.payload.jid)
             })
+        },
+        [getAllCollectJobsThunk.fulfilled]: (state, action) => {
+            state.collects = state.collects.filter(c => {
+                return (c._id === action.payload.uid)
+            })
         }
+
     }
 })
 

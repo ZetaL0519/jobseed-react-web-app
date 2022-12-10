@@ -12,10 +12,12 @@ import RegisterEmployer from "./components/authentication/registeremployer.js";
 import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
+import JobDetail from "./components/jobs/job-detail.js";
 import Users from "./components/admin/adminboard.js"
 import ProfileComponent from "./components/profile";
 import EditProfile from "./components/profile/update-profile.js"
 import ProtectedRoute from "./components/authentication/protected-route.js"
+import {CreateJob} from "./components/jobs/job-create.js"
 
 import './App.css';
 import {configureStore} from "@reduxjs/toolkit";
@@ -31,7 +33,7 @@ const store = configureStore({
         users: usersReducer,
         searchjobs: SearchJobReducer,
         jobs: JobsReducer,
-        collects: CollectsReducer
+        collects: CollectsReducer,
     }
 })
 
@@ -55,6 +57,9 @@ function App() {
 
                             <Route path="/jobs" element={<JobResult/>}/>
                             <Route path="/admin" element={<ProtectedRoute><Users/>></ProtectedRoute>}/>
+                            <Route path="/jobs/:jid" element={<JobDetail/>}/>
+                            <Route path="/profile/createjob" element={<CreateJob/>}/>
+                            <Route path="/admin" element={<Users/>}/>
                         </Routes>
                         <Footer/>
                </BrowserRouter>

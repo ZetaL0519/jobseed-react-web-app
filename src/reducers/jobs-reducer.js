@@ -1,9 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createJobsThunk, deleteJobThunk, findAllJobsThunk, findJobPostedbyUserThunk} from "../services/jobs-thunks";
+import {createJobsThunk, deleteJobThunk, findAllJobsThunk, findJobByIdThunk, findJobPostedbyUserThunk} from "../services/jobs-thunks";
 
 const initialState = {
     jobs: [],
     loading: true,
+    currentjob: null,
 }
 
 const JobsReducer = createSlice({
@@ -14,13 +15,22 @@ const JobsReducer = createSlice({
             state.jobs = action.payload
         },
         [createJobsThunk.fulfilled]: (state, action) => {
+            console.log(action.payload)
             state.jobs.push(action.payload)
         },
+        [createJobsThunk.rejected]: (state, action) => {
+            console.log(action.payload)
+            console.log("wrong")
+        },
+
         [deleteJobThunk.fulfilled]: (state, action) => {
             // const midx = state.findIndex(m => m._id === action.payload)
             state.jobs = state.jobs.filter(j => {
                 return j._id !== action.payload
             })
+        },
+        [findJobByIdThunk.fulfilled]: (state, action) => {
+            state.currentjob = action.payload
         }
 //        [findJobPostedbyUserThunk.fulfilled]: (state, action) => {
 //            state.jobs = state.jobs.filter(j => {

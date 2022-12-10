@@ -44,6 +44,8 @@ const SeekerProfile = () => {
                     </>
             </div>
 
+            <h3>My collections</h3>
+
             <button
                 className="btn btn-danger"
                 onClick={handleLogoutBtn}>

@@ -1,7 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
+import {useNavigate, Navigate} from "react-router";
 import "./search.style.css";
 
 export const SearchItem = ({job}) => {
@@ -9,6 +10,7 @@ export const SearchItem = ({job}) => {
     const [isCollect,setIsCollect] = useState(false)
     const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const addCollectBtn = (_id) => {
         console.log(isCollect);
         const collect = {uid: currentUser._id,jid:_id}
@@ -28,7 +30,9 @@ export const SearchItem = ({job}) => {
               <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i id="myButton" className="bi bi-star"></i></span>
               </div>
               <div className="card-body text-success">
-                <h5 className="card-title">{job.jobtitle}</h5>
+                <Link to={`/jobs/${job._id}`} className="job-link">
+                    <h5 className="card-title">{job.jobtitle}</h5>
+                </Link>
                 <p className="card-text">{job.location}</p>
                 <p className="card-text">{job.salary}</p>
               </div>

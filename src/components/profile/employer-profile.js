@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../../services/users-thunks";
 import {createJobsThunk} from "../../services/jobs-thunks";
 import {useNavigate} from "react-router";
+import {CreateJob} from "../jobs/job-create"
 
 const EmployerProfile = () => {
     const navigate = useNavigate()
@@ -15,20 +16,6 @@ const EmployerProfile = () => {
         navigate('/login')
     }
 
-    const [jobtitle, setJobTitle] = useState('')
-    const [salary, setSalary] = useState('')
-    const [location, setLocation] = useState('')
-    const [companyname, setCompanyname] = useState('')
-    const [url, setUrl] = useState('')
-    const [summary, setSummary] = useState('')
-    const [email, setEmail] = useState('')
-
-    const createJobBtn = () => {
-        const date = (new Date()).getTime() + ''
-        const newJob = {jobtitle, date, companyname, email, location, salary, url, summary}
-        dispatch(createJobsThunk(newJob))
-
-    }
 
     return (
             <div className="user-profile container">
@@ -38,6 +25,7 @@ const EmployerProfile = () => {
                     Logout
                 </button>
                 <Link to="/profile/edit" className="btn btn-success">Update Profile</Link>
+                <Link to="/profile/createjob" className="btn btn-primary">CreateJob</Link>
                 <h1>
                     Welcome to {currentUser.firstName} {currentUser.lastName}'s Profile
                 </h1>
@@ -58,37 +46,9 @@ const EmployerProfile = () => {
                     </p>
                 </div>
 
-                <ul className="list-group">
-                    <div className="list-group-item form-floating">
-                        <input id="job-title" placeholder="Job Title" onChange={(e) => setJobTitle(e.target.value)}/>
-                        <label htmlFor="job-title"></label>
-                    </div>
-                    <div className="list-group-item form-floating mt-3">
-                        <input id="location" placeholder="Location" onChange={(e) => setLocation(e.target.value)}/>
-                        <label htmlFor="location"></label>
-                    </div>
-                    <div className="list-group-item form-floating mt-3">
-                        <input id="companyname" placeholder="Company Name" onChange={(e) => setCompanyname(e.target.value)}/>
-                        <label htmlFor="companyname"></label>
-                    </div>
-                    <div className="list-group-item form-floating mt-3">
-                        <input id="salary" placeholder="Salary" onChange={(e) => setSalary(e.target.value)}/>
-                        <label htmlFor="salary"></label>
-                    </div>
-                    <div className="list-group-item form-floating mt-3">
-                        <input id="url" placeholder="URL" type="url" onChange={(e) => setUrl(e.target.value)}/>
-                        <label htmlFor="url"></label>
-                    </div>
-                    <div className="list-group-item form-floating mt-3">
-                        <input id="summary" placeholder="Summary" type="text" onChange={(e) => setSummary(e.target.value)}/>
-                        <label htmlFor="summary"></label>
-                    </div>
-                    <li className="list-group-item">
-                        <button className="btn-success float-end">
-                            Create
-                        </button>
-                    </li>
-                </ul>
+
+
+
             </div>
 
     )
