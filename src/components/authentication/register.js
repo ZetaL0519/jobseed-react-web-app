@@ -29,7 +29,6 @@ const Register = () => {
         setError(null)
         const newUser = {username, password, firstName, lastName, email,dateOfBirth, accountType}
         dispatch(registerThunk(newUser))
-        return (<Navigate to={'/profile'}/>)
     }
 
     if (currentUser) {
