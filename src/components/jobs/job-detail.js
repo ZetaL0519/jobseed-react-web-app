@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import {findJobByIdThunk} from "../../services/jobs-thunks";
+import "./job.css"
 
 const JobDetail = () => {
     const {jid} = useParams();
@@ -15,17 +16,22 @@ const JobDetail = () => {
     return (
         <div className="container">
             {currentjob && 
-            <div>  
+            <div  className="job-container">  
                 <h2>{currentjob.jobtitle}</h2>
-                <p className="text-success"><span class="bi bi-file-post"></span>{currentjob.companyname} {currentjob.date}</p>
-                <p className="text-success"><span class="bi bi-building-fill"></span> {currentjob.location}</p>
+                <br/>
+                <div className="job-detail">
+                <p className="text-success">    <span class="bi bi-file-post"> </span>{currentjob.companyname} </p>
+                <p className="text-success">    <span class="bi bi-calendar2-fill"> </span>{currentjob.date}</p>
+                <p className="text-success">    <span class="bi bi-building-fill"> </span>{currentjob.location}</p>
+                <p className="text-success">    <span class="bi bi-bank"> </span>{currentjob.salary}</p>
                 <br/>
                 <button className="btn btn-success"
                             type="submit"
                             >
                         Apply
                     </button>
-                <div>
+                
+                <br/>
                 <br/>
                 <h2>About us</h2>
                 <p> {currentjob.summary}</p>
