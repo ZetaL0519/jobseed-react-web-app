@@ -4,19 +4,26 @@ import "./user-profile-style.css";
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../../services/users-thunks";
 import {getAllCollectJobsThunk} from "../../services/collect-thunks";
+import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
 import {useNavigate} from "react-router";
-import {JobItem} from "./post-jobs";
+import {JobItem} from "./employ-contents/post-jobs";
 
 const SeekerProfile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {currentUser} = useSelector((state) => state.users)
     const {collects} = useSelector((state) => state.collects)
+    const {applys} = useSelector((state) => state.applys)
     const uid = currentUser._id
     useEffect(() => {
         dispatch(getAllCollectJobsThunk(uid))
     },[uid])
-    console.log(collects)
+
+    useEffect(() => {
+        dispatch(findAllJobsApplyUserThunk(uid))
+    }, [uid])
+
+    console.log(applys)
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
         navigate('/login')
@@ -55,6 +62,13 @@ const SeekerProfile = () => {
                 <h2>My Collections</h2>
                 <div className="roomslist-center">
                 {collects && collects.map(c => <JobItem key={c.job._id} job={c.job}/>)}
+                </div>
+            </div>
+
+            <div className="postjobs">
+                <h2>My Applications</h2>
+                <div className="roomslist-center">
+                {applys && applys.map(a => <JobItem key={a.job._id} job={a.job}/>)}
                 </div>
             </div>
 

@@ -54,7 +54,7 @@ function App() {
                             <Route path="/register" exact={true} element={<Register/>} />
                             <Route path="/login" exact={true} element={<Login/>}/>
                             <Route path={'/profile'} element={<ProtectedRoute><ProfileComponent/></ProtectedRoute>}/>
-                            <Route path={'/publicprofile/:uid'} element={<PublicProfile />} />
+                            <Route path={'/rofile/:uid'} element={<PublicProfile />} />
                             <Route path={'/profile/edit'}
                                    element={<EditProfile/>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>
@@ -66,7 +66,6 @@ function App() {
                             <Route path="/jobs/:jid/edit" element={<JobDetail/>}/>
                             <Route path="/applys/:jid" element={<UsersApply />}/>
                             <Route path="/profile/createjob" element={<CreateJob/>}/>
-                            <Route path="/admin" element={<Users/>}/>
                         </Routes>
                         <Footer/>
                </BrowserRouter>

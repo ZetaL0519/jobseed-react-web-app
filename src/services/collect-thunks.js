@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {userCollectJob, userDisCollectJob, getAllCollectJobs} from "./collect-service";
+import {userCollectJob, userDisCollectJob, getAllCollectJobs, findOneCollectJob} from "./collect-service";
 
 export const userCollectJobThunk = createAsyncThunk(
     'userCollectJob',
@@ -19,6 +19,13 @@ export const getAllCollectJobsThunk = createAsyncThunk(
     'getUserCollectJobs',
     async(uid) => {
         return await getAllCollectJobs(uid)
+    }
+)
+
+export const findOneCollectJobThunk = createAsyncThunk(
+    'findOneCollect',
+    async(collect) => {
+        return await findOneCollectJob(collect.uid, collect.jid);
     }
 )
 

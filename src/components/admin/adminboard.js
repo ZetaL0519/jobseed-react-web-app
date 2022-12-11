@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {findAllUsersThunk, logoutThunk} from "../../services/users-thunks";
+import {findAllUsersThunk, logoutThunk, deleteUserThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router";
 
 const Users = () => {
@@ -16,9 +16,14 @@ const Users = () => {
         navigate('/login')
     }
 
-    const handleDeleteUserBtn = () => {
-        dispatch()
+    const handleDeleteUserBtn = (uid) => {
+        dispatch(deleteUserThunk(uid))
     }
+
+    const handleUpdateUserBtn = () => {
+
+    }
+
     return(
         <>
             <h1>{users.length } Registered Users
@@ -40,7 +45,7 @@ const Users = () => {
                             Delete
                         </button>
                         <button className="btn btn-success ml-5"
-                                onClick = {handleDeleteUserBtn}>
+                                onClick = {handleUpdateUserBtn(user._id)}>
                             Update
                         </button>
                         </div>

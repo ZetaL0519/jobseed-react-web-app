@@ -16,3 +16,8 @@ export const getAllCollectJobs = async(uid) => {
     const response = await axios.get(`${USERS_URL}/${uid}/collects`)
     return response.data
 }
+
+export const findOneCollectJob = async(uid, jid) => {
+    const response = await axios.get(`${USERS_URL}/${uid}/collects/${jid}`)
+    return response.data
+}
