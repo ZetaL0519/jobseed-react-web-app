@@ -1,9 +1,21 @@
-import React from "react";
+import {React, useEffect, useState} from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {findJobBySearchTermThunk} from "../services/search-jobs-thunks";
 import "./headerstyle.css";
 
 const Header = () => {
+
+    const [searchTerm, setSearchTerm] = useState('')
+    const dispatch = useDispatch()
+    const handleSearchBtn = () => {
+        dispatch(findJobBySearchTermThunk({
+            searchTerm
+        }
+        ))
+    }
+
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,12 +28,12 @@ const Header = () => {
 
             <div className="row">
                 <div className="col-11">
-                    <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+                    <input className="form-control" value={searchTerm} type="text" onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
                 <div className="col-1">
-                  <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+                  <Link to={`/search/${searchTerm}`} className="btn btn-outline-success my-2 my-sm-0" onClick={handleSearchBtn}>
                   <i className="fas fa-search"></i>
-                  </button>
+                  </Link>
                 </div>
 
             </div>
@@ -32,7 +44,9 @@ const Header = () => {
               <li className="nav-item">
                 <Link to="/employer" className="nav-link">Employer</Link>
               </li>
-
+              <li className="nav-item">
+                <Link to="/jobs" className="nav-link">Jobs</Link>
+              </li>
             </ul>
 
            <Dropdown>

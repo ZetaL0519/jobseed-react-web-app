@@ -1,0 +1,16 @@
+.job-container{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.job-detail{
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.postedBy{
+    color: rgb(59, 114, 187);
+    text-decoration: none;
+}

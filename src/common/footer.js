@@ -11,7 +11,7 @@ const Footer = () => {
                    target="_blank"
                    rel="noopener noreferrer" >
                     <i className="fab fa-github">&nbsp;</i>
-                    @ZetaL
+                    @ZetaL @Yi
                 </a>
             </span>
             <span className="text-muted">
@@ -20,7 +20,7 @@ const Footer = () => {
                    target="_blank"
                    rel="noopener noreferrer" >
                     <i className="fab fa-github">&nbsp;</i>
-                    @ZetaL
+                    @ZetaL @Yi
                 </a>
             </span>
         </div>

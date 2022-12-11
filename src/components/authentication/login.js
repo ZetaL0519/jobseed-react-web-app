@@ -1,10 +1,37 @@
 import './authstyle.css';
-import React from 'react';
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {loginThunk} from "../../services/users-thunks.js";
+import {useNavigate, Navigate} from "react-router";
 
 const LogIn = () => {
+
+    const {currentUser} = useSelector((state) => state.users)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [error, setError] = useState(null)
+
+    const handleLoginBtn = () => {
+        dispatch(loginThunk({username, password, isAdmin}))
+    }
+    if (currentUser && !currentUser.isAdmin) {
+        return (<Navigate to={'/profile'}/>)
+    }
+
+    if (currentUser && currentUser.isAdmin) {
+        return (<Navigate to={'/admin'}/>)
+    }
+
     return (
         <div className="container">
+            {
+                currentUser &&
+                <h2 >Welcome {currentUser.username}</h2>
+            }
             <div className="login-form">
                 <form action="">
                     <h2 className="text-center">Log In</h2>
@@ -18,6 +45,7 @@ const LogIn = () => {
                                id="inputUsername"
                                type="username"
                                placeholder="Username"
+                               onChange={(e) => setUsername(e.target.value)}
                                required autoFocus />
                     </div>
                     <div className="form-group">
@@ -29,12 +57,13 @@ const LogIn = () => {
                                id="inputPassword"
                                type="password"
                                placeholder="Password"
+                               onChange={(e) => setPassword(e.target.value)}
                                required />
                     </div>
                     <div className="form-group">
                         <button className="btn btn-success btn-block"
-                                type="submit"
-                                onClick="location.href='../profile/profile.template.client.html'">
+                                type="button"
+                                onClick={handleLoginBtn}>
                             Log in
                         </button>
                     </div>
