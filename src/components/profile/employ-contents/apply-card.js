@@ -15,7 +15,6 @@ export const ApplyJobItem = ({apply}) => {
         <div className="card border-success mb-3 cardsize">
               <div className="card-header bg-transparent border-success">
               <span className="left-button">{job.companyname}</span>
-
               </div>
               <div className="card-body text-success">
                 <div className="job-link">

@@ -31,6 +31,8 @@ export const UserCard = ({apply}) => {
               <div className="card-body text-primary">
                 <Link to={`/profile/${apply.applyBy._id}`} className="job-link">
                     <h5 className="card-title"><span className="bi bi-person-bounding-box"></span> {apply.applyBy.username}</h5>
+                <Link to={`/profile/${user.user._id}`} className="job-link">
+                    <h5 className="card-title"><span className="bi bi-person-bounding-box"></span> {user.user.username}</h5>
                 </Link>
                 <p className="card-text">{apply.applyBy.email}</p>
                 <p className="card-text">{apply.applyBy.biography}</p>

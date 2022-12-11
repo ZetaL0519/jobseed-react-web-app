@@ -20,7 +20,7 @@ export const SearchItem = ({job}) => {
               {currentUser && currentUser.accountType ==="SEEKER" && <Collect uid={currentUser._id} jid={job._id} />}
               </div>
               <div className="card-body text-success">
-                <Link to={`/jobs/${job._id}`} className="job-link">
+                <Link to={`/jobs/details/${job._id}`} className="job-link">
                     <h5 className="card-title">{job.jobtitle}</h5>
                 </Link>
                 <p className="card-text">{job.location}</p>

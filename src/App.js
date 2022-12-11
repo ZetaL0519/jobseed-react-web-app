@@ -19,6 +19,7 @@ import Users from "./components/admin/adminboard.js"
 import ProfileComponent from "./components/profile";
 import PublicProfile from "./components/profile/publicprofile.js"
 import EditProfile from "./components/profile/update-profile.js"
+import UpdateUser from "./components/admin/update-user.js"
 import ProtectedRoute from "./components/authentication/protected-route.js"
 import {CreateJob} from "./components/jobs/job-create.js"
 
@@ -63,7 +64,8 @@ function App() {
 
                             <Route path="/jobs" element={<JobResult/>}/>
                             <Route path="/admin" element={<ProtectedRoute><Users/></ProtectedRoute>}/>
-                            <Route path="/jobs/:jid" element={<JobDetail/>}/>
+                            <Route path="/admin/update/:uid" element={<UpdateUser />}/>
+                            <Route path="/jobs/details/:jid" element={<JobDetail/>}/>
                             <Route path="/jobs/:jid/edit" element={<UpdateJob/>}/>
                             <Route path="/applys/:jid" element={<UsersApply />}/>
                             <Route path="/profile/createjob" element={<CreateJob/>}/>
