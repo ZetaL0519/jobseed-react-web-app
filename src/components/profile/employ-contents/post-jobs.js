@@ -1,15 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom"
-import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {useNavigate, Navigate} from "react-router";
-import Apply from "../jobs/job-apply"
-import "../search-result/search.style.css";
+import "../../search-result/search.style.css";
 
 export const JobItem = ({job}) => {
     const {currentUser} = useSelector((state) => state.users)
-    const [isCollect,setIsCollect] = useState(false)
-    const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

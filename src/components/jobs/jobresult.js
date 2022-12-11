@@ -9,7 +9,6 @@ const JobResult = () => {
     useEffect(() => {
         dispatch(findAllJobsThunk())
     }, [])
-    console.log(jobs.length)
     return(
        <div className="container">
             <h2>All {jobs.length} Jobs Available</h2>

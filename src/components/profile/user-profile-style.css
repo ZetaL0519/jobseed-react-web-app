@@ -8,6 +8,12 @@
 
 .postjobs{
     border: 1px;
+    width: 90%;
+}
+
+.borde-title{
+    width: 80%;
+    padding-left: 40px;
 }
 
 .cardsize{

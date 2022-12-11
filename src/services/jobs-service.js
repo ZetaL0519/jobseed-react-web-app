@@ -20,7 +20,10 @@ export const findJobById = async(jid) => {
     return job
 }
 
-export const updateJob = async() => {}
+export const updateJob = async(jid, job) => {
+    const response = await axios.put(`${BASE_URL}/${jid}`, job)
+    return response.data
+}
 
 export const deleteJob = async(jid) => {
     const response = await axios.delete(`${BASE_URL}/${jid}`)
