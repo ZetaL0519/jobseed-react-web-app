@@ -31,7 +31,7 @@ const Apply = ({uid, jid}) => {
                     <button className="btn btn-secondary"
                             type="submit" 
                             >
-                        Applyed
+                        Applied
                     </button>
             </div>
         )
