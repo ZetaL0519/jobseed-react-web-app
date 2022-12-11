@@ -37,13 +37,11 @@ const Apply = ({uid, jid}) => {
         )
     }else{
         return (
-            <div className="left-button">
-                    <button className="btn btn-success"
-                            type="submit" onClick={handleApply}
-                            >
-                        Apply
-                    </button>
-            </div>
+                <button className="btn btn-success"
+                        type="submit" onClick={handleApply}
+                        >
+                    Apply
+                </button>
         )
     }
     
