@@ -1,8 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom"
+import {Link,  useParams} from "react-router-dom"
 import {findJobByIdThunk} from "../../services/jobs-thunks";
+import { findAllUserApplyJobThunk } from "../../services/apply-thunks";
 import Apply from "./job-apply";
+import {UserCard} from "./publicUsers"
 import "./job.css"
 
 const JobDetail = () => {
@@ -11,8 +13,10 @@ const JobDetail = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findJobByIdThunk(jid));
+        dispatch(findAllUserApplyJobThunk(jid))
     }, [jid])
     const {currentjob} = useSelector((state) => state.jobs);
+    const {usersapplyjob} = useSelector((state) => state.applys);
 
     return (
         <div className="container">
@@ -25,13 +29,18 @@ const JobDetail = () => {
                 <p className="text-success">    <span className="bi bi-calendar2-fill"> </span>{currentjob.date}</p>
                 <p className="text-success">    <span className="bi bi-building-fill"> </span>{currentjob.location}</p>
                 <p className="text-success">    <span className="bi bi-bank"> </span>{currentjob.salary}</p>
+                <p className="text-success">Posted By <span><Link className="postedBy" to={`/profile/${currentjob.postBy._id}`}><i className="bi bi-person-circle"></i>{currentjob.postBy.username}</Link></span></p>
                 <br/>
                 {currentUser && <Apply uid={currentUser._id} jid={jid}/>}
                 <br/>
-                <br/>
                 <h2>About us</h2>
                 <p> {currentjob.summary}</p>
+                <h2>Who Applied</h2>
+                {usersapplyjob && usersapplyjob.map(apply => {
+                    return <UserCard user={apply.applyBy}/>
+                })}
                 </div>
+
             </div>
             
             

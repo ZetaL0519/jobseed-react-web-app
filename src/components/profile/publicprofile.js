@@ -31,8 +31,8 @@ const PublicProfile = () => {
                 {publicProfile.location}
                 <i className="fa fa-birthday-cake ms-3 me-2"></i>
                 {publicProfile.dateOfBirth && publicProfile.dateOfBirth.split('T')[0]}
-                <i className="far fa-calendar ms-3 me-2"></i>
-                {publicProfile.email}
+                {/* <i className="far fa-calendar ms-3 me-2"></i>
+                {publicProfile.email} */}
             </p>
             </div>
         </div>}

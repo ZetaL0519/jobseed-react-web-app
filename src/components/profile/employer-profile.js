@@ -24,18 +24,13 @@ const EmployerProfile = () => {
     }
     return (
             <div className="user-profile container ">
-                <button
-                    className="btn btn-danger"
-                    onClick={handleLogoutBtn}>
-                    Logout
-                </button>
-                <Link to="/profile/edit" className="btn btn-success">Update</Link>
+                
                 
                 <h1>
                     Welcome to {currentUser.firstName} {currentUser.lastName}'s Profile
                 </h1>
                 <div className="font-bold">
-                    User Role: {currentUser.accountType}
+                    User Role: {currentUser.accountType} <Link to="/profile/edit" className="btn btn-success">Update</Link>
                 </div>
                 <div className="bioSection p-2">
                     <p className="fg-white pt-2">
@@ -59,7 +54,11 @@ const EmployerProfile = () => {
                     </div>
                 </div>
                 </div>
-
+                <button
+                    className="btn btn-danger"
+                    onClick={handleLogoutBtn}>
+                    Logout
+                </button>
 
 
 

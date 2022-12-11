@@ -1,11 +1,13 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
 import './homeintrostyle.css';
 
 const HomeIntro = () => {
+    const {currentUser} = useSelector((state) => state.users)
     return (
         <div className="container">
             <div className="section-title">
-                <h3 className="intro-subheading">Launch your career </h3>
+                <h3 className="intro-subheading">{currentUser && <span>Hi {currentUser.firstName} ! </span>}Launch your career </h3>
                 <h2 className="intro-heading">@JobSeed</h2>
             </div>
 
