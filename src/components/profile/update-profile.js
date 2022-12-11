@@ -14,8 +14,7 @@ const EditProfile = () => {
   const [location, setLocation] = useState(currentUser.location);
   const [biography, setBiography] = useState(currentUser.biography);
   const [dateOfBirth, setDateOfBirth] = useState(currentUser.dateOfBirth);
-  console.log(1)
-  console.log(currentUser._id)
+
   const saveClickHandler = () => {
     const newUser = {
         ...currentUser,

@@ -4,6 +4,7 @@ import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {useNavigate, Navigate} from "react-router";
 import Apply from "../jobs/job-apply"
+import Collect from "../jobs/job-collection"
 import "./search.style.css";
 
 export const SearchItem = ({job}) => {
@@ -28,7 +29,7 @@ export const SearchItem = ({job}) => {
         <div className="card border-success mb-3">
               <div className="card-header bg-transparent border-success">
               <span className="left-button">{job.companyname}</span>
-              <span className="right-button" onClick = {() => addCollectBtn(job._id)} ><i id="myButton" className="bi bi-star"></i></span>
+              {currentUser && currentUser.accountType ==="SEEKER" && <Collect uid={currentUser._id} jid={job._id} />}
               </div>
               <div className="card-body text-success">
                 <Link to={`/jobs/${job._id}`} className="job-link">
@@ -37,18 +38,17 @@ export const SearchItem = ({job}) => {
                 <p className="card-text">{job.location}</p>
                 <p className="card-text">{job.salary}</p>
               </div>
-              <div className="card-footer bg-transparent border-success">
-                     <div className="left-button">
-                     {currentUser && <Apply uid={currentUser._id} jid={job._id}/>}
-                    </div>
-                    <div className="right-button">
-                   <button className="btn btn-secondary"
-                           type="submit"
-                           >
-                       Dismiss
-                   </button>
-                   </div>
-              </div>
+
+              {
+                currentUser && currentUser.accountType === "SEEKER" &&
+                  <div className="card-footer bg-transparent border-success">
+                         <div>
+                         <Apply uid={currentUser._id} jid={job._id}/>
+                        </div>
+                  </div>
+              }
+
+
         </div>
     )
 }
