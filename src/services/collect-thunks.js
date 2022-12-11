@@ -17,8 +17,8 @@ export const userDisCollectJobThunk = createAsyncThunk(
 
 export const getAllCollectJobsThunk = createAsyncThunk(
     'getUserCollectJobs',
-    async(collect) => {
-        return await getAllCollectJobs(collect.uid)
+    async(uid) => {
+        return await getAllCollectJobs(uid)
     }
 )
 
