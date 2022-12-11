@@ -15,20 +15,21 @@ export const findAllJobs = async() => {
 }
 
 export const findJobById = async(jid) => {
+    
     const response = await axios.get(`${BASE_URL}/onejob/${jid}`)
     const job = response.data;
     return job
 }
 
-export const updateJob = async(jid, job) => {
-    const response = await axios.put(`${BASE_URL}/${jid}`, job)
+export const updateJob = async(job) => {
+    const response = await axios.put(`${BASE_URL}/${job._id}`, job)
     return response.data
 }
 
 export const deleteJob = async(jid) => {
     const response = await axios.delete(`${BASE_URL}/${jid}`)
     const status = response.data
-    return jid
+    return status
 }
 
 export const findJobPostedbyUser = async(uid) => {

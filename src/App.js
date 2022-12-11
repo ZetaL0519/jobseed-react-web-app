@@ -13,6 +13,7 @@ import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
 import JobDetail from "./components/jobs/job-detail.js";
+import UpdateJob from "./components/profile/employ-contents/update-job"
 import UsersApply from "./components/profile/employ-contents/user-apply.js";
 import Users from "./components/admin/adminboard.js"
 import ProfileComponent from "./components/profile";
@@ -63,7 +64,7 @@ function App() {
                             <Route path="/jobs" element={<JobResult/>}/>
                             <Route path="/admin" element={<ProtectedRoute><Users/></ProtectedRoute>}/>
                             <Route path="/jobs/:jid" element={<JobDetail/>}/>
-                            <Route path="/jobs/:jid/edit" element={<JobDetail/>}/>
+                            <Route path="/jobs/:jid/edit" element={<UpdateJob/>}/>
                             <Route path="/applys/:jid" element={<UsersApply />}/>
                             <Route path="/profile/createjob" element={<CreateJob/>}/>
                         </Routes>

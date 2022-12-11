@@ -27,11 +27,13 @@ const Apply = ({uid, jid}) => {
     
     if(applyed){
         return (
-                <button className="btn btn-secondary"
-                        type="submit"
-                        >
-                    Applied
-                </button>
+            <div className="left-button">
+                    <button className="btn btn-secondary"
+                            type="submit" 
+                            >
+                        Applied
+                    </button>
+            </div>
         )
     }else{
         return (

@@ -20,7 +20,7 @@ export const findJobByIdThunk = createAsyncThunk(
 
 export const updateJobThunk = createAsyncThunk(
     'updateJob',
-    (newjob) => updateJob(newjob.jid, newjob.job)
+    (newjob) => updateJob(newjob)
 )
 export const deleteJobThunk = createAsyncThunk(
     'deleteJob',
