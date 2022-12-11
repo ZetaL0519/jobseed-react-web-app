@@ -8,7 +8,6 @@ import {useNavigate, Navigate} from "react-router";
 const UpdateJob = () => {
     const {jid} = useParams()
     const navigate = useNavigate()
-    const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     const [currentjob, setCurrentJob] = useState(null)
 

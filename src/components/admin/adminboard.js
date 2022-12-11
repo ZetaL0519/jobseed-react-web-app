@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
+import {Link} from "react-router-dom"
 import {findAllUsersThunk, logoutThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router";
 
@@ -10,7 +11,6 @@ const Users = () => {
     useEffect(() => {
         dispatch(findAllUsersThunk())
     }, [])
-    console.log(currentUser)
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
         navigate('/login')
@@ -39,10 +39,10 @@ const Users = () => {
                                 onClick = {handleDeleteUserBtn}>
                             Delete
                         </button>
-                        <button className="btn btn-success ml-5"
-                                onClick = {handleDeleteUserBtn}>
+                        <Link to={`/admin/update/${user._id}`}>
+                        <button className="btn btn-success ml-5">
                             Update
-                        </button>
+                        </button></Link>
                         </div>
                     </li>
                     )
