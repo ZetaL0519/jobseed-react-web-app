@@ -1,11 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import { findAllUserApplyJob } from "../../services/apply-service";
-import {findJobByIdThunk} from "../../services/jobs-thunks";
-import { findAllUserApplyJobThunk } from "../../services/apply-thunks";
-import "../search-result/search.style.css";
-import "../jobs/job.css"
+import {findJobByIdThunk} from "../../../services/jobs-thunks";
+import { findAllUserApplyJobThunk } from "../../../services/apply-thunks";
+import {UserCard} from "./user-card.js"
+import "../../search-result/search.style.css";
+import "../../jobs/job.css"
 
 const Users = () => {
     const {jid} = useParams();
@@ -16,7 +16,6 @@ const Users = () => {
     }, [jid])
     const {currentjob} = useSelector((state) => state.jobs);
     const {usersapplyjob} = useSelector((state) => state.applys);
-    console.log(usersapplyjob)
     return(
         <div>
             {currentjob && 
@@ -29,10 +28,10 @@ const Users = () => {
                 <p className="text-success">    <span className="bi bi-bank"> </span>{currentjob.salary}</p>
                 <br/>
                 <h2>All Candidates</h2>
-                <div>
-                    {/* {users && users.map(user => {
-                        
-                    })} */}
+                <div className="roomslist-center">
+                    {usersapplyjob && usersapplyjob.map(user => {
+                        return <UserCard user={user.applyBy}/>
+                    })}
                 </div>
                 </div>
             </div>

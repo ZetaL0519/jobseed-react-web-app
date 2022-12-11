@@ -6,7 +6,7 @@ import {logoutThunk} from "../../services/users-thunks";
 import {createJobsThunk, findJobPostedbyUserThunk} from "../../services/jobs-thunks";
 import {useNavigate} from "react-router";
 import {CreateJob} from "../jobs/job-create";
-import {JobItem} from "./post-jobs.js"
+import {JobItem} from "./employ-contents/post-jobs.js"
 
 const EmployerProfile = () => {
     const navigate = useNavigate()
@@ -29,7 +29,7 @@ const EmployerProfile = () => {
                     onClick={handleLogoutBtn}>
                     Logout
                 </button>
-                <Link to="/profile/edit" className="btn btn-success">Update Profile</Link>
+                <Link to="/profile/edit" className="btn btn-success">Update</Link>
                 
                 <h1>
                     Welcome to {currentUser.firstName} {currentUser.lastName}'s Profile
@@ -50,7 +50,10 @@ const EmployerProfile = () => {
                         {currentUser.email}
                     </p>
                 <div className="postjobs">
-                    <h2>Post Job <span><Link to="/profile/createjob" className="btn btn-primary">CreateJob</Link></span></h2>
+                    <div className="">
+                    <div className="left-button borde-title"><h2>Post Job </h2></div>
+                    <div className="right-button"><Link to="/profile/createjob" className="btn btn-primary">+</Link></div>
+                    </div>
                     <div className="roomslist-center">
                     {postjobs && postjobs.map(job => <JobItem key={job._id} job={job}/>)}
                     </div>

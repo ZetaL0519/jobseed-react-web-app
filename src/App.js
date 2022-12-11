@@ -13,9 +13,10 @@ import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
 import JobDetail from "./components/jobs/job-detail.js";
-import UsersApply from "./components/profile/user-apply.js";
+import UsersApply from "./components/profile/employ-contents/user-apply.js";
 import Users from "./components/admin/adminboard.js"
 import ProfileComponent from "./components/profile";
+import PublicProfile from "./components/profile/publicprofile.js"
 import EditProfile from "./components/profile/update-profile.js"
 import ProtectedRoute from "./components/authentication/protected-route.js"
 import {CreateJob} from "./components/jobs/job-create.js"
@@ -53,6 +54,7 @@ function App() {
                             <Route path="/register" exact={true} element={<Register/>} />
                             <Route path="/login" exact={true} element={<Login/>}/>
                             <Route path={'/profile'} element={<ProtectedRoute><ProfileComponent/></ProtectedRoute>}/>
+                            <Route path={'/publicprofile/:uid'} element={<PublicProfile />} />
                             <Route path={'/profile/edit'}
                                    element={<EditProfile/>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>

@@ -57,6 +57,9 @@ const usersReducer = createSlice({
         },
         [updateUserThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+        },
+        [findUserByIdThunk.fulfilled]: (state, action) => {
+            state.publicProfile = action.payload
         }
     }
 })
