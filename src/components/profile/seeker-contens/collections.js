@@ -12,11 +12,10 @@ export const JobItem = ({job}) => {
     return (
         <div className="card border-success mb-3 cardsize">
               <div className="card-header bg-transparent border-success">
-              <span className="left-button update-pen"><Link to={`/jobs/${job._id}/edit`}><i className="bi bi-pencil-square"> </i></Link></span>
               <span className="left-button"> {job.companyname}</span>
               </div>
               <div className="card-body text-success">
-                <Link to={`/applys/${job._id}`} className="job-link">
+                <Link to={`/jobs/details/${job._id}`} className="job-link">
                     <h5 className="card-title">{job.jobtitle}</h5>
                 </Link>
                 <p className="card-text">{job.location}</p>

@@ -6,7 +6,7 @@ import {logoutThunk} from "../../services/users-thunks";
 import {getAllCollectJobsThunk} from "../../services/collect-thunks";
 import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
 import {useNavigate} from "react-router";
-import {JobItem} from "./employ-contents/post-jobs";
+import {JobItem} from "./seeker-contens/collections";
 import {ApplyJobItem} from "./employ-contents/apply-card";
 
 const SeekerProfile = () => {

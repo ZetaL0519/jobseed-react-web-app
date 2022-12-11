@@ -33,12 +33,15 @@ const JobDetail = () => {
                 <br/>
                 {currentUser && <Apply uid={currentUser._id} jid={jid}/>}
                 <br/>
+                <br/>
                 <h2>About us</h2>
                 <p> {currentjob.summary}</p>
                 <h2>Who Applied</h2>
+                <div className="roomslist-center">
                 {usersapplyjob && usersapplyjob.map(apply => {
                     return <UserCard user={apply.applyBy} key={apply._id}/>
                 })}
+                </div>
                 </div>
 
             </div>
