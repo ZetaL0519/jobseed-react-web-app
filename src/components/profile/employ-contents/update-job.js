@@ -12,19 +12,21 @@ const UpdateJob = () => {
     const dispatch = useDispatch()
     const [currentjob, setCurrentJob] = useState(null)
 
-    const findjob = () => {
-        findJobById(jid).then(j => setCurrentJob(j))
+    const findjob = (jid) => {
+        findJobById(jid).then(j => {
+            setCurrentJob(j)
+            setJobTitle(j.jobtitle)
+            setSalary(j.salary)
+            setLocation(j.location)
+            setCompanyname(j.companyname)
+            setUrl(j.url)
+            setSummary(j.summary)
+        })
     }
 
     useEffect(() => {
         dispatch(findJobByIdThunk(jid))
-        findJobById()
-        setJobTitle(currentjob.jobtitle)
-        setSalary(currentjob.salary)
-        setLocation(currentjob.location)
-        setCompanyname(currentjob.companyname)
-        setUrl(currentjob.url)
-        setSummary(currentjob.summary)
+        findjob(jid)
     }, [])
     
 
@@ -36,13 +38,9 @@ const UpdateJob = () => {
     const [summary, setSummary] = useState("")
 
     const updateJobBtn = () => {
-        const newJob = {jobtitle, companyname, location, salary, url, summary}
-        const updateJob = {
-            job: newJob,
-            jid: jid
-        }
+        const newJob = {...currentjob, jobtitle, companyname, location, salary, url, summary}
         try {
-            dispatch(updateJob(updateJob))
+            dispatch(updateJobThunk(newJob))
             dispatch(findAllJobsThunk())
         } catch(e) {
             console.log("error:" + e)
@@ -52,8 +50,8 @@ const UpdateJob = () => {
 
     return (
         <div className="container">
-            {currentUser && <div>
-            <div> <Link to="/profile" className="ms-3 fg-white"><i className="fa fa-times"/></Link> <h2>Create New Job</h2> </div>
+            {currentjob && <div>
+            <div> <Link to="/profile" className="ms-3 fg-white"><i className="fa fa-times"/></Link> <h2>Update Job</h2> </div>
                 <form className="border-success">
                     <div>
                         <label htmlFor="job-title">Job Title</label>

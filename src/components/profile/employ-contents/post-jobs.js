@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import {useNavigate, Navigate} from "react-router";
+import {deleteJobThunk} from "../../../services/jobs-thunks";
 import "../../search-result/search.style.css";
 
 export const JobItem = ({job}) => {
@@ -9,11 +10,18 @@ export const JobItem = ({job}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const deleteJob = () => {
+        dispatch(deleteJobThunk(job._id))
+        window.location.reload()
+    }
+
     return (
         <div className="card border-success mb-3 cardsize">
               <div className="card-header bg-transparent border-success">
-              <span className="left-button">{job.companyname}</span>
-              <span className="right-button update-pen"><Link to={`/jobs/${job._id}/edit`}><i className="bi bi-pencil"></i></Link></span>
+              <span className="left-button update-pen"><Link to={`/jobs/${job._id}/edit`}><i className="bi bi-pencil-square"> </i></Link></span>
+              <span className="left-button"> {job.companyname}</span>
+              <span className="right-button btn-danger" onClick={deleteJob}>
+                        <Link><i className="bi bi-x"/></Link></span>
               </div>
               <div className="card-body text-success">
                 <Link to={`/applys/${job._id}`} className="job-link">
