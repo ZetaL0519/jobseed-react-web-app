@@ -9,21 +9,9 @@ import "./search.style.css";
 
 export const SearchItem = ({job}) => {
     const {currentUser} = useSelector((state) => state.users)
-    const [isCollect,setIsCollect] = useState(false)
     const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const addCollectBtn = (_id) => {
-        console.log(isCollect);
-        const collect = {uid: currentUser._id,jid:_id}
-        if(!isCollect && currentUser != null && currentUser.accountType === 'SEEKER') {
-            dispatch(userCollectJobThunk(collect))
-        }else if(isCollect && currentUser != null && currentUser.accountType === 'SEEKER') {
-            dispatch(userDisCollectJobThunk(collect))
-        }
-        document.getElementById('myButton').className = "bi bi-star-fill";
-        setIsCollect(!isCollect)
-    }
 
     return (
         <div className="card border-success mb-3">

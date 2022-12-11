@@ -23,7 +23,7 @@ const SearchLocationTitle = ({
     const {jobs, loading} = useSelector((state) => state.searchjobs)
     return (
        <div className="container">
-            <h1>Job Search Results for {title} in {location}</h1>
+            <h1>{jobs.length} Job Search Results for {title} in {location}</h1>
 
             <div className="search-result-grid mt-3">
                 <div className="roomslist-center">

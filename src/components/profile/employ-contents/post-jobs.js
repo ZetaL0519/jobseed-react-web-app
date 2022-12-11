@@ -20,8 +20,8 @@ export const JobItem = ({job}) => {
               <div className="card-header bg-transparent border-success">
               <span className="left-button update-pen"><Link to={`/jobs/${job._id}/edit`}><i className="bi bi-pencil-square"> </i></Link></span>
               <span className="left-button"> {job.companyname}</span>
-              <span className="right-button btn-danger" onClick={deleteJob}>
-                        <Link><i className="bi bi-x"/></Link></span>
+//              <span className="right-button btn-danger" onClick={deleteJob}>
+//                        <Link><i className="bi bi-x"/></Link></span>
               </div>
               <div className="card-body text-success">
                 <Link to={`/applys/${job._id}`} className="job-link">

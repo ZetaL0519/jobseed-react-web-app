@@ -55,7 +55,7 @@ function App() {
                             <Route path="/register" exact={true} element={<Register/>} />
                             <Route path="/login" exact={true} element={<Login/>}/>
                             <Route path={'/profile'} element={<ProtectedRoute><ProfileComponent/></ProtectedRoute>}/>
-                            <Route path={'/rofile/:uid'} element={<PublicProfile />} />
+                            <Route path={'/profile/:uid'} element={<PublicProfile />} />
                             <Route path={'/profile/edit'}
                                    element={<EditProfile/>}/>
                             <Route path="/search/:searchTerm" element={<SearchResult/>}/>

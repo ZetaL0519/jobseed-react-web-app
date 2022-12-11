@@ -16,6 +16,7 @@ const Users = () => {
     }, [jid])
     const {currentjob} = useSelector((state) => state.jobs);
     const {usersapplyjob} = useSelector((state) => state.applys);
+    console.log(usersapplyjob)
     return(
         <div>
             {currentjob && 
@@ -29,8 +30,8 @@ const Users = () => {
                 <br/>
                 <h2>All Candidates</h2>
                 <div className="roomslist-center">
-                    {usersapplyjob && usersapplyjob.map(user => {
-                        return <UserCard user={user.applyBy}/>
+                    {usersapplyjob && usersapplyjob.map(apply => {
+                        return <UserCard apply={apply} key={apply._id}/>
                     })}
                 </div>
                 </div>

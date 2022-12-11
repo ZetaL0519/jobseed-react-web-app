@@ -7,6 +7,7 @@ import {getAllCollectJobsThunk} from "../../services/collect-thunks";
 import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
 import {useNavigate} from "react-router";
 import {JobItem} from "./employ-contents/post-jobs";
+import {ApplyJobItem} from "./employ-contents/apply-card";
 
 const SeekerProfile = () => {
     const navigate = useNavigate()
@@ -29,12 +30,19 @@ const SeekerProfile = () => {
         navigate('/login')
     }
 
+
     return (
         <>
             <div className="user-profile container">
                     <>
                         <h1>
                             Welcome to {currentUser.firstName} {currentUser.lastName}'s Profile
+
+                            <button
+                                className="btn btn-danger float-end mt-3"
+                                onClick={handleLogoutBtn}>
+                                Logout
+                            </button>
                         </h1>
                         <h4>
                             User Role: {currentUser.accountType}  <Link to="/profile/edit" className="btn btn-success">Update Profile</Link>
@@ -68,15 +76,11 @@ const SeekerProfile = () => {
             <div className="postjobs">
                 <h2>My Applications</h2>
                 <div className="roomslist-center">
-                {applys && applys.map(a => <JobItem key={a.job._id} job={a.job}/>)}
+                {applys && applys.map(a => <ApplyJobItem key={a._id} apply={a}/>)}
                 </div>
             </div>
 
-            <button
-                className="btn btn-danger"
-                onClick={handleLogoutBtn}>
-                Logout
-            </button>
+
         </>
     )
 }

@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { userApplyJobThunk, findOneApplyThunk, findAllUserApplyJobThunk, findAllJobsApplyUserThunk, UserDeleteJobThunk} from "../services/apply-thunks";
+import { userApplyJobThunk, findOneApplyThunk, findAllUserApplyJobThunk, findAllJobsApplyUserThunk, UserDeleteJobThunk, UpdateAcceptJobThunk} from "../services/apply-thunks";
 
 const initialState = {
     applys: [],
@@ -26,9 +26,12 @@ const ApplysReducer = createSlice({
         },
         [findAllJobsApplyUserThunk.fulfilled]: (state, action) => {
             state.applys = action.payload
+        },
+        [UpdateAcceptJobThunk.fulfilled]: (state, action) => {
+//            state.usersapplyjob = action.payload
         }
 //        [UserDeleteJobThunk.fulfilled]: (state, action) => {
-//            state.applys = state.applys.filter(a => a._id !== action.payload.uid && a.job !== action.payload.jid)
+//            state.applys = state.applys.filter()
 //        }
     }
 })

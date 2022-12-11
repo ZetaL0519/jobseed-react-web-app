@@ -5,17 +5,17 @@ import {useNavigate, Navigate} from "react-router";
 import "../../search-result/search.style.css";
 
 export const ApplyJobItem = ({apply}) => {
+    console.log(apply)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const job = apply.job
-
+    const [job, setJob] = useState(apply.job)
 
     return (
         <div className="card border-success mb-3 cardsize">
               <div className="card-header bg-transparent border-success">
               <span className="left-button">{job.companyname}</span>
-              <span className="right-button" }><i className="fa fa-times"></i></span>
+
               </div>
               <div className="card-body text-success">
                 <div className="job-link">
@@ -25,7 +25,7 @@ export const ApplyJobItem = ({apply}) => {
                 <p className="card-text">{job.salary}</p>
               </div>
               <div className="card-footer bg-transparent border-success">
-
+                    <span>Status: {apply.accept}</span>
               </div>
         </div>
     )

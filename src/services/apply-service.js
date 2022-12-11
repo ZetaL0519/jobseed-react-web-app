@@ -26,3 +26,11 @@ export const UserDeleteJob = async(uid, jid) => {
     const response = await axios.get(`${USERS_URL}/${uid}/applys/${jid}`)
     return response.data
 }
+
+export const UpdateAcceptJob = async(apply) => {
+    const response = await axios.put(`${USERS_URL}/applys/${apply._id}`, apply)
+    console.log(response.data)
+    console.log(1)
+    console.log(apply)
+    return response.data
+}

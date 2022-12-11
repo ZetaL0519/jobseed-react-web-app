@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {userApplyJob, findOneApply, findAllUserApplyJob, findAllJobsApplyUser, UserDeleteJob} from "./apply-service";
+import {userApplyJob, findOneApply, findAllUserApplyJob, findAllJobsApplyUser, UserDeleteJob, UpdateAcceptJob} from "./apply-service";
 
 export const userApplyJobThunk = createAsyncThunk(
     'userApplyJob',
@@ -32,5 +32,12 @@ export const UserDeleteJobThunk = createAsyncThunk(
     'UserDeleteJob',
     async(apply) => {
         return await UserDeleteJob(apply.uid, apply.jid)
+    }
+)
+
+export const UpdateAcceptJobThunk = createAsyncThunk(
+    'UpdateAcceptJob',
+    async(apply) => {
+        return await UpdateAcceptJob(apply)
     }
 )

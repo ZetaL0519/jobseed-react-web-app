@@ -26,7 +26,7 @@ const Collect = ({uid, jid}) => {
         window.location.reload()
     }
 
-    if (collect) {
+    if (IsCollect) {
         console.log(1)
         return(
             <span className="right-button">
