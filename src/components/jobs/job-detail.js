@@ -37,7 +37,7 @@ const JobDetail = () => {
                 <p> {currentjob.summary}</p>
                 <h2>Who Applied</h2>
                 {usersapplyjob && usersapplyjob.map(apply => {
-                    return <UserCard user={apply.applyBy}/>
+                    return <UserCard user={apply.applyBy} key={apply._id}/>
                 })}
                 </div>
 

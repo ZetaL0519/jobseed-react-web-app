@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import React from "react";
 import './employerhomestyle.css';
 
@@ -7,9 +8,9 @@ const EmployerHome = () => {
             <div className="search container background-image">
                 <h1 className="search-heading">Connect With Top Talents</h1>
                 <div className="search-button">
-                    <button className="btn btn-dark">
+                    <Link to="/register" className="btn btn-dark" >
                         Register As Our Employer
-                    </button>
+                    </Link>
                 </div>
             </div>
 
