@@ -6,7 +6,6 @@ import {loginThunk} from "../../services/users-thunks.js";
 import {useNavigate, Navigate} from "react-router";
 
 const LogIn = () => {
-
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     const navigate = useNavigate()
