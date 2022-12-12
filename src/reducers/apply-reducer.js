@@ -29,10 +29,12 @@ const ApplysReducer = createSlice({
         },
         [UpdateAcceptJobThunk.fulfilled]: (state, action) => {
 //            state.usersapplyjob = action.payload
-        }
-//        [UserDeleteJobThunk.fulfilled]: (state, action) => {
-//            state.applys = state.applys.filter()
-//        }
+        },
+       [UserDeleteJobThunk.fulfilled]: (state, action) => {
+        state.applys = state.applys.filter(a => {
+            return (a.job._id !== action.payload.jid)
+        })
+       }
     }
 })
 
