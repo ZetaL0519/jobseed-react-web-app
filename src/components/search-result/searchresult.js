@@ -16,8 +16,10 @@ const SearchResult = (searchInput = '') => {
     useEffect(() => {
         if (searchTerm !== undefined && searchTerm !== searchInput) {
             dispatch(findJobBySearchTermThunk(searchTerm))
+            if (currentUser !== null) {
             dispatch(findAllJobsApplyUserThunk(currentUser._id))
             dispatch(getAllCollectJobsThunk(currentUser._id))
+            }
         }
     }, [searchTerm])
 

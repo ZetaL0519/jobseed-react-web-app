@@ -4,16 +4,22 @@ import {findAllJobsThunk} from "../../services/jobs-thunks";
 import {SearchItem} from "../search-result/searchitem.js"
 import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
 import {getAllCollectJobsThunk,} from "../../services/collect-thunks";
+import { useNavigate } from "react-router";
 
 const JobResult = () => {
     const {jobs} = useSelector((state) => state.jobs)
     const { currentUser } = useSelector((state) => state.users);
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(findAllJobsThunk())
-        dispatch(findAllJobsApplyUserThunk(currentUser._id))
-        dispatch(getAllCollectJobsThunk(currentUser._id))
+        if (currentUser!==null) {
+            dispatch(findAllJobsApplyUserThunk(currentUser._id))
+            dispatch(getAllCollectJobsThunk(currentUser._id))
+        }
+        
     }, [])
+
     return(
        <div className="container">
             <h2>All {jobs.length} Jobs Available</h2>
