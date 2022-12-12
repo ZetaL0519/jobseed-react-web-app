@@ -24,10 +24,9 @@ export const SearchItem = ({job}) => {
       }
     }).length>0);
   
-    console.log(applys, "applyss");
    
     const isApplied = !!(applys?.filter((item) =>{
-      console.log(item, "dsdsds");
+      // console.log(item, "dsdsds");
       if(item?.job?._id == job?._id && item.applyBy == currentUser._id){
           return true;
       }
@@ -68,7 +67,7 @@ export const SearchItem = ({job}) => {
     };
   
   
-    console.log(isApplied, "isapplied")
+    // console.log(isApplied, "isapplied")
     const [isApply, setIsApply] = useState(isApplied);
     console.log(isApply, "apply")
     useEffect(()=>{
@@ -117,25 +116,46 @@ export const SearchItem = ({job}) => {
         <p className="card-text">{job.salary}</p>
       </div>
       <div className="card-footer bg-transparent border-success">
-        <div className="left-button" onClick={() => addApplyBtn(job._id)}>
-        {!isApply ? (
-          <button className="btn btn-success" type="submit">
-          
-            Apply
-          </button>)
+
+        {isApply ? (
+        <div>  
+          <button className="btn btn-success disabled left-button" type="submit">
+            Applied
+          </button>
+          <button className="btn btn-danger ms-2 float-end right-button" type="submit" onClick={() => addApplyBtn(job._id)}>
+            Withdraw
+          </button>
+        </div>
+        )
           :
           (
-          <button className="btn btn-danger" type="submit">
-          Applied
-          </button>)
+          <div className="left-button">
+            <button className="btn btn-success" type="submit" onClick={() => addApplyBtn(job._id)}>
+              Apply
+            </button>
+          </div>
+        )
         }
-        </div>
+      
       </div>
     </div>
   );
 };
 
 
+        {/* <div className="left-button" onClick={() => addApplyBtn(job._id)}>
+        {!isApply ? (
+          <button className="btn btn-success" type="submit">
+            Apply
+          </button>
+        )
+          :
+          (
+          <button className="btn btn-danger" type="submit">
+          Applied
+          </button>)
+        }
+        </div> */}
 
 
 
