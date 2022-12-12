@@ -4,16 +4,17 @@ import {findAllJobsThunk} from "../../services/jobs-thunks";
 import {SearchItem} from "../search-result/searchitem.js"
 import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
 import {getAllCollectJobsThunk,} from "../../services/collect-thunks";
-import { useNavigate } from "react-router";
+
 
 const JobResult = () => {
     const {jobs} = useSelector((state) => state.jobs)
     const { currentUser } = useSelector((state) => state.users);
     const dispatch = useDispatch()
-    const navigate = useNavigate();
+ 
     useEffect(() => {
         dispatch(findAllJobsThunk())
         if (currentUser!==null) {
+            console.log(currentUser, "useruser")
             dispatch(findAllJobsApplyUserThunk(currentUser._id))
             dispatch(getAllCollectJobsThunk(currentUser._id))
         }

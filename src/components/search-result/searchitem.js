@@ -110,7 +110,7 @@ export const SearchItem = ({job}) => {
         </span>
       </div>
       <div className="card-body text-success">
-        <Link to={`/jobs/${job._id}`} className="job-link">
+        <Link to={`/jobs/details/${job._id}`} className="job-link">
           <h5 className="card-title">{job.jobtitle}</h5>
         </Link>
         <p className="card-text">{job.location}</p>
