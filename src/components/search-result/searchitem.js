@@ -23,7 +23,6 @@ export const SearchItem = ({job}) => {
           return true;
       }
     }).length>0);
-  
    
     const isApplied = !!(applys?.filter((item) =>{
       // console.log(item, "dsdsds");
@@ -69,7 +68,6 @@ export const SearchItem = ({job}) => {
   
     // console.log(isApplied, "isapplied")
     const [isApply, setIsApply] = useState(isApplied);
-    console.log(isApply, "apply")
     useEffect(()=>{
       setIsApply((isApply)=>!isApply);
     },[isApplied])
@@ -115,7 +113,7 @@ export const SearchItem = ({job}) => {
         <p className="card-text">{job.location}</p>
         <p className="card-text">{job.salary}</p>
       </div>
-      <div className="card-footer bg-transparent border-success">
+      {currentUser.accountType === 'SEEKER' &&  <div className="card-footer bg-transparent border-success">
 
         {isApply ? (
         <div>  
@@ -137,7 +135,7 @@ export const SearchItem = ({job}) => {
         )
         }
       
-      </div>
+      </div>}
     </div>
   );
 };

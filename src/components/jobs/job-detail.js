@@ -31,7 +31,7 @@ const JobDetail = () => {
                 <p className="text-success">    <span className="bi bi-bank"> </span>{currentjob.salary}</p>
                 <p className="text-success">Posted By <span><Link className="postedBy" to={`/profile/${currentjob.postBy._id}`}><i className="bi bi-person-circle"></i>{currentjob.postBy.username}</Link></span></p>
                 <br/>
-                {currentUser && <Apply uid={currentUser._id} jid={jid}/>}
+                {currentUser && currentUser.accountType === "SEEKER" && <Apply uid={currentUser._id} jid={jid}/>}
                 <br/>
                 <br/>
                 <h2>About us</h2>

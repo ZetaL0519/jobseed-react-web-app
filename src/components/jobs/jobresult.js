@@ -14,7 +14,6 @@ const JobResult = () => {
     useEffect(() => {
         dispatch(findAllJobsThunk())
         if (currentUser!==null) {
-            console.log(currentUser, "useruser")
             dispatch(findAllJobsApplyUserThunk(currentUser._id))
             dispatch(getAllCollectJobsThunk(currentUser._id))
         }

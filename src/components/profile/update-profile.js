@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, Link} from "react-router-dom";
-import {updateUserThunk} from "../../services/users-thunks";
+import {updateUserThunk, profileThunk} from "../../services/users-thunks";
 
 const EditProfile = () => {
   const {currentUser} = useSelector(state => state.users);
@@ -27,6 +27,7 @@ const EditProfile = () => {
     }
     dispatch(updateUserThunk(newUser))
     navigate("../profile")
+    dispatch(profileThunk())
   }
  return(
       <div>

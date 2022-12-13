@@ -16,7 +16,6 @@ const Users = () => {
     }, [jid])
     const {currentjob} = useSelector((state) => state.jobs);
     const {usersapplyjob} = useSelector((state) => state.applys);
-    console.log(usersapplyjob)
     return(
         <div>
             {currentjob && 

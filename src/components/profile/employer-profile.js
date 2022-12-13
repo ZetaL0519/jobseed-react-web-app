@@ -13,6 +13,7 @@ const EmployerProfile = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {postjobs} = useSelector((state) => state.jobs)
     const dispatch = useDispatch()
+    
 
     useEffect(() => {
         dispatch(findJobPostedbyUserThunk(currentUser._id))
@@ -28,6 +29,11 @@ const EmployerProfile = () => {
                 
                 <h1>
                     Welcome to {currentUser.firstName} {currentUser.lastName}'s Profile
+                    <button
+                                className="btn btn-danger float-end mt-3"
+                                onClick={handleLogoutBtn}>
+                                Logout
+                            </button>
                 </h1>
                 <div className="font-bold">
                     User Role: {currentUser.accountType} <Link to="/profile/edit" className="btn btn-success">Update</Link>
@@ -37,9 +43,9 @@ const EmployerProfile = () => {
                         {currentUser.bio}
                     </p>
                     <p>
-                        <i className="fa fa-map-marker me-2"></i>
-                        {currentUser.location}
-                        <i className="fa fa-birthday-cake ms-3 me-2"></i>
+                    {currentUser.location && <i className="fa fa-map-marker me-2"></i>}
+                         {currentUser.location}
+                         {currentUser.dateOfBirth &&<i className="fa fa-birthday-cake ms-3 me-2"></i>}
                         {currentUser.dateOfBirth && currentUser.dateOfBirth.split('T')[0]}
                         <i className="far fa-calendar ms-3 me-2"></i>
                         {currentUser.email}
@@ -54,11 +60,6 @@ const EmployerProfile = () => {
                     </div>
                 </div>
                 </div>
-                <button
-                    className="btn btn-danger"
-                    onClick={handleLogoutBtn}>
-                    Logout
-                </button>
 
 
 
