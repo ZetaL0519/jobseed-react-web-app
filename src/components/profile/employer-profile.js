@@ -40,7 +40,7 @@ const EmployerProfile = () => {
                         <i className="fa fa-map-marker me-2"></i>
                         {currentUser.location}
                         <i className="fa fa-birthday-cake ms-3 me-2"></i>
-                        {currentUser.dateOfBirth.split('T')[0]}
+                        {currentUser.dateOfBirth && currentUser.dateOfBirth.split('T')[0]}
                         <i className="far fa-calendar ms-3 me-2"></i>
                         {currentUser.email}
                     </p>
