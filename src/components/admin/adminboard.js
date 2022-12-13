@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import {Link} from "react-router-dom"
 import {findAllUsersThunk, logoutThunk, deleteUserThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router";
+import DeleteButton from "./delete-button"
 
 const Users = () => {
     const navigate = useNavigate()
@@ -16,7 +17,8 @@ const Users = () => {
         navigate('/login')
     }
 
-    const handleDeleteUserBtn = (uid) => {
+    const handleDeleteUserBtn = (uid) => () => {
+        console.log(uid)
         dispatch(deleteUserThunk(uid))
     }
 
@@ -40,10 +42,7 @@ const Users = () => {
                         {user.username}
                         </div>
                         <div className="right-button">
-                        <button className="btn btn-danger"
-                                onClick = {handleDeleteUserBtn}>
-                            Delete
-                        </button>
+                        <DeleteButton uid={user._id}/>
                         <Link to={`/admin/update/${user._id}`}>
                         <button className="btn btn-success ml-5">
                             Update

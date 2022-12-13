@@ -24,7 +24,6 @@ const SeekerProfile = () => {
         dispatch(findAllJobsApplyUserThunk(uid))
     }, [uid])
 
-    console.log(applys)
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
         navigate('/login')
