@@ -32,6 +32,7 @@ const Register = () => {
     }
 
     if (currentUser) {
+        
         return (<Navigate to={'/profile'}/>)
     }
 

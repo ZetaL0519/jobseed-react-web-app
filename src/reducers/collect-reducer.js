@@ -28,6 +28,12 @@ const CollectsReducer = createSlice({
         },
         [findOneCollectJobThunk.fulfilled]: (state, action) => {
             state.currentcollect = action.payload
+        },
+        [userDisCollectJobThunk.fulfilled]: (state, action) => {
+            // console.log(action,'aaaaaa')
+            state.collects = state.collects.filter(c => {
+                return (c.job._id !== action.payload.jid)
+            })
         }
 
     }

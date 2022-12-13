@@ -23,8 +23,8 @@ export const findAllJobsApplyUser = async (uid) => {
 }
 
 export const UserDeleteJob = async(uid, jid) => {
-    const response = await axios.get(`${USERS_URL}/${uid}/applys/${jid}`)
-    return response.data
+    const response = await axios.delete(`${USERS_URL}/${uid}/applys/${jid}`)
+    return {uid,jid}
 }
 
 export const UpdateAcceptJob = async(apply) => {

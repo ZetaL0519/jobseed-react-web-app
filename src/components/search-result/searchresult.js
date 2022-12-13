@@ -2,17 +2,24 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import {findJobBySearchTermThunk} from "../../services/search-jobs-thunks";
-import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
+// import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {SearchItem} from "./searchitem.js"
 import "./search.style.css";
+import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
+import {getAllCollectJobsThunk,} from "../../services/collect-thunks";
 
 const SearchResult = (searchInput = '') => {
     const {searchTerm} = useParams()
+    const { currentUser } = useSelector((state) => state.users);
 
     const dispatch = useDispatch()
     useEffect(() => {
         if (searchTerm !== undefined && searchTerm !== searchInput) {
             dispatch(findJobBySearchTermThunk(searchTerm))
+            if (currentUser !== null) {
+            dispatch(findAllJobsApplyUserThunk(currentUser._id))
+            dispatch(getAllCollectJobsThunk(currentUser._id))
+            }
         }
     }, [searchTerm])
 

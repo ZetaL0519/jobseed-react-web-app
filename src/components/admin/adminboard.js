@@ -7,7 +7,17 @@ import DeleteButton from "./delete-button"
 
 const Users = () => {
     const navigate = useNavigate()
-    const {currentUser, users, loading} = useSelector((state) => state.users)
+    const {currentUser,users} = useSelector((state) =>state.users)
+    // const currentUser = useSelector((state)=>state.users)
+ 
+    useEffect(() => {
+        if (!currentUser.isAdmin){
+            navigate('/profile')
+        }
+    }, [navigate, currentUser])
+
+
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())

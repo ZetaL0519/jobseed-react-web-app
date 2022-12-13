@@ -8,7 +8,6 @@ import HomeIntro from './components/home/homeintro.js';
 import EmployerHome from './components/employer/employerhome.js';
 import Login from "./components/authentication/login.js";
 import Register from "./components/authentication/register.js"
-import RegisterEmployer from "./components/authentication/registeremployer.js";
 import SearchResult from "./components/search-result/searchresult.js";
 import SearchLocationTitle from "./components/search-result/searchlocationtitle.js";
 import JobResult from "./components/jobs/jobresult.js";
