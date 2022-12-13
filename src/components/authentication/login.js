@@ -4,19 +4,28 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../../services/users-thunks.js";
 import {useNavigate, Navigate} from "react-router";
+import { unwrapResult } from '@reduxjs/toolkit';
 
 const LogIn = () => {
 
     const {currentUser} = useSelector((state) => state.users)
+    // const login = useSelector((state) => state.isLoggedIn)
+   
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isAdmin, setIsAdmin] = useState(false);
-    const [error, setError] = useState(null)
+    // const [error, setError] = useState(null)
 
+ 
     const handleLoginBtn = () => {
         dispatch(loginThunk({username, password, isAdmin}))
+        .then(unwrapResult)
+        // .then((obj)=>console.log({obj}))
+        .catch(err=>alert("Incorrect username or password"))
+       
+        
     }
     if (currentUser && !currentUser.isAdmin) {
         return (<Navigate to={'/profile'}/>)
@@ -25,6 +34,8 @@ const LogIn = () => {
     if (currentUser && currentUser.isAdmin) {
         return (<Navigate to={'/admin'}/>)
     }
+    
+
 
     return (
         <div className="container">
