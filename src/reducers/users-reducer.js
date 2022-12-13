@@ -26,7 +26,8 @@ const usersReducer = createSlice({
             state.isLoggedIn = true
         },
         [loginThunk.rejected]: (state, action) => {
-            state.error = action.payload
+            state.error = action.error
+            console.log(state.error)
             state.currentUser = null
             state.isLoggedIn = false
         },
