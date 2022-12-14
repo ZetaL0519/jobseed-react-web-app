@@ -3,8 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import './homeintrostyle.css';
 import {getWeather} from "../../services/weatherAPI.js"
+import {createWeather} from "../../services/weather-service.js"
 
 const HomeIntro = () => {
+
 
     const {currentUser} = useSelector((state) => state.users)
     const [weather, setWeather] = useState("");
@@ -17,6 +19,18 @@ const HomeIntro = () => {
             setIcon(i)
         })
     }
+
+    // const dispatch= useDispatch();
+
+    const handleButtonClick = () => {
+        // console.log(city, "ww")
+        // console.log(getWeather, "ddd")
+        
+        const w = {city: city, temp: weather.data.main.temp}
+        createWeather(w);
+        console.log(w);
+    }
+
 
     useEffect(() => {
         getweather()
@@ -45,6 +59,13 @@ const HomeIntro = () => {
                    Pinpoint you in fit position
                   </div> */}
                  <div className="d-flex flex-column text-center mt-5 mb-4">
+                    
+                    <div className="search-button">
+                        <button className="ms-3 btn btn-dark" onClick={handleButtonClick}>
+                            create weather
+                        </button> 
+                    </div>
+                    
                     <input className="weather-input" type="text" value={city} onChange={(c) => setCity(c.target.value)}/>
                     <h2 className="display-4 mb-0 font-weight-bold temp"> {weather.data.main.temp} F</h2>
                     {icon && <div id="icon"><img className="weather-icon" id="wicon" src={icon} alt="Weather icon" /></div>}

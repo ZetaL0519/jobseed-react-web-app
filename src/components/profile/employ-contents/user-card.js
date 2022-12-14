@@ -23,6 +23,13 @@ export const UserCard = ({apply}) => {
         const newApply = {applyBy,job,_id, accept}
         dispatch(UpdateAcceptJobThunk(newApply))
     }
+
+    useEffect(() => {
+        setAccept(accept)
+    }, [accept])
+
+
+
     return(
         <div className="card border-primary mb-3 cardsize">
               <div className="card-header bg-transparent border-primary">
@@ -35,6 +42,7 @@ export const UserCard = ({apply}) => {
                 <p className="card-text">{apply.applyBy.email}</p>
                 <p className="card-text">{apply.applyBy.biography}</p>
               </div>
+    
               <div className="card-footer bg-transparent border-primary">
                      <div className="left-button">
                         <button onClick={handleAcceptBtn} className="btn btn-danger">Accept</button>

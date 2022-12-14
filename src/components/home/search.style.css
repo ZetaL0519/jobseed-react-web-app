@@ -1,0 +1,27 @@
+.left-button {
+    display:inline-block;
+    float:left
+}
+
+.right-button {
+    display: inline-block;
+    float: right;
+}
+
+.job-link{
+    color: #198754;
+    text-decoration: none;
+}
+
+.update-pen{
+    color: grey
+}
+
+.cardsize{
+   
+}
+
+.name{
+    color: #0b5130;
+    font-weight: 700;
+}
