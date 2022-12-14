@@ -46,7 +46,7 @@ const HomeIntro = () => {
                   </div> */}
                  <div className="d-flex flex-column text-center mt-5 mb-4">
                     <input className="weather-input" type="text" value={city} onChange={(c) => setCity(c.target.value)}/>
-                    <h2 className="display-4 mb-0 font-weight-bold temp"> {weather.data.main.temp} </h2>
+                    <h2 className="display-4 mb-0 font-weight-bold temp"> {weather.data.main.temp} F</h2>
                     {icon && <div id="icon"><img className="weather-icon" id="wicon" src={icon} alt="Weather icon" /></div>}
                     <span className="small weather">{weather.data.weather[0].main}</span>
                     </div>
