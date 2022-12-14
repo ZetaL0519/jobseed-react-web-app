@@ -23,3 +23,13 @@
     font-size: 1.3rem;
     margin-left: 30px;
 }
+.temp{
+    color: #1C2331
+}
+.weather{
+    color: #868B94
+}
+.weather-input{
+    border: none;
+    text-align:center
+}
