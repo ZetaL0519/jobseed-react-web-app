@@ -35,11 +35,14 @@ function Searchcompany() {
     };
     
     axios.request(options).then(function (response) {
-      console.log(response.data);
+      console.log(response.data, "dddd");
+      setResponseData(response.data)
     }).catch(function (error) {
       console.error(error);
     })
   }, [])
+
+  // console.log(responseData, "responsedata")
 
   React.useEffect(() => {
     fetchData()
@@ -57,7 +60,7 @@ function Searchcompany() {
         {responseData &&
           <blockquote>
             "{responseData && responseData.company_name}"
-            <small>{responseData && responseData.company_name && responseData.originator.industry}</small>
+            <small>{responseData && responseData.company_name && responseData.industry}</small>
           </blockquote>
         }
         </main>
