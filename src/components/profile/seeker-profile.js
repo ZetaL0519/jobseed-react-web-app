@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../../services/users-thunks";
 import {getAllCollectJobsThunk} from "../../services/collect-thunks";
 import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
+import { findFollowByUidThunk } from "../../services/follow-thunks";
 import {useNavigate} from "react-router";
 import {JobItem} from "./seeker-contens/collections";
 import {ApplyJobItem} from "./employ-contents/apply-card";
@@ -15,9 +16,11 @@ const SeekerProfile = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {collects} = useSelector((state) => state.collects)
     const {applys} = useSelector((state) => state.applys)
+    const {follows} = useSelector((state) => state.follows)
     const uid = currentUser._id
     useEffect(() => {
         dispatch(getAllCollectJobsThunk(uid))
+        dispatch(findFollowByUidThunk(uid))
     },[uid])
 
     useEffect(() => {
@@ -76,6 +79,26 @@ const SeekerProfile = () => {
                 <h2>My Applications</h2>
                 <div className="roomslist-center">
                 {applys && applys.map(a => <ApplyJobItem key={a._id} apply={a}/>)}
+                </div>
+            </div>
+
+            <div className="postjobs">
+                <h2>Company</h2>
+                <div className="roomslist-center">
+                    {follows && follows.map(f => {
+                        return (<div className="card border-success mb-3">
+                                    <div className="card-header bg-transparent border-success">
+                                    <span className="left-button">{f.company_name}</span>
+                                    </div>
+                                    <div className="card-body text-success">
+                                    <Link to={`/company/details/${f.profile_id}`} state={f} className="job-link">
+                                        <h5 className="card-title">{f.company_name}</h5>
+                                    </Link>
+                                    <p className="card-text">{f.headquarters}</p>
+                                    <p className="card-text">{f.industry}</p>
+                                    </div>
+                                </div>)
+                    })}
                 </div>
             </div>
 
