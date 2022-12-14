@@ -71,15 +71,19 @@ export const SearchcompanyItem = (state) => {
     // const {follows} = useSelector((state) => state.);
     const {follows} = useSelector((state) => state.follows)
 
-    console.log(follows,"followsssss")
+    // console.log(fol,"followsssss")
 
     const isFollowed = !!(follows?.filter((item) => {
-        if (item?.companyId === state.company?.company_id && item.follower._id === currentUser._id) {
+      // console.log(item.follower._id === currentUser._id, "ssss")
+
+      // console.log(item.follower._id,"item.follower._id")
+      // console.log(currentUser._id, "currentUser._id")
+        if (parseInt(item?.companyId) === state.company?.company_id && item.follower._id === currentUser._id) {
             return true;
         }
     }).length > 0);
 
-    console.log(isFollowed)
+    console.log(isFollowed, "isfolloedddd")
     const [isFollow, setIsFollow] = useState(isFollowed);
 
     useEffect(()=>{
@@ -87,9 +91,11 @@ export const SearchcompanyItem = (state) => {
       setIsFollow((isFollow)=>!isFollow);
     },[isFollowed]);
 
-       useEffect(()=>{
+     useEffect(()=>{
       setIsFollow(isFollow);
     },[isFollow])
+
+  
 
     const [companyId, setCompanyId] = useState(state.company.company_id)
     const [companyName, setCompanyName] = useState(state.company.company_name)

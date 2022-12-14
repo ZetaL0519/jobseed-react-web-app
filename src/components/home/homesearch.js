@@ -80,6 +80,7 @@ const Search = () => {
             </div>
             {/* <SearchcompanyBar /> */}
 
+
              <div className="mt-3 search-job-location">
                 <div className="row">
                     <div className="search-bar">
