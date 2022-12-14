@@ -38,7 +38,7 @@ const Search = () => {
       axios.request(options).then(function (response) {
         
         setResponseData(response.data)
-        console.log(response.data)
+
       }).catch(function (error) {
         console.error(error);
       })

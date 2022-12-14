@@ -23,9 +23,10 @@ const Users = () => {
                 <h2>{currentjob.jobtitle}</h2>
                 <div className="job-detail">
                 <p className="text-success">    <span className="bi bi-file-post"> </span>{currentjob.companyname} </p>
-                <p className="text-success">    <span className="bi bi-calendar2-fill"> </span>{currentjob.date}</p>
                 <p className="text-success">    <span className="bi bi-building-fill"> </span>{currentjob.location}</p>
                 <p className="text-success">    <span className="bi bi-bank"> </span>{currentjob.salary}</p>
+                <br/>
+                <div>Summary: {currentjob.summary}</div>
                 <br/>
                 <h2>All Candidates</h2>
                 <div className="roomslist-center">
