@@ -5,8 +5,8 @@ import {findJobBySearchTermThunk} from "../../services/search-jobs-thunks";
 // import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import {SearchcompanyItem} from "./searchcompanyitem.js"
 import "./search.style.css";
-import {findAllJobsApplyUserThunk} from "../../services/apply-thunks";
-import {getAllCollectJobsThunk,} from "../../services/collect-thunks";
+import {findFollowByUidThunk} from "../../services/follow-thunks";
+
 
 const SearchcompanyResult = (searchInput = '') => {
     const {searchTerm} = useParams()
@@ -14,15 +14,11 @@ const SearchcompanyResult = (searchInput = '') => {
     const location = useLocation();
 
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     if (searchTerm !== undefined && searchTerm !== searchInput) {
-    //         dispatch(findJobBySearchTermThunk(searchTerm))
-    //         if (currentUser !== null) {
-    //         dispatch(findAllJobsApplyUserThunk(currentUser._id))
-    //         dispatch(getAllCollectJobsThunk(currentUser._id))
-    //         }
-    //     }
-    // }, [searchTerm])
+     useEffect(() => {
+          if (currentUser !== null) {
+          dispatch(findFollowByUidThunk(currentUser._id))
+          }
+     }, [])
 
     // const {jobs} = useSelector((state) => state.searchjobs)
       const company = location.state;

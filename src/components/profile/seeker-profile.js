@@ -83,16 +83,16 @@ const SeekerProfile = () => {
             </div>
 
             <div className="postjobs">
-                <h2>Company</h2>
+                <h2>Followed Company</h2>
                 <div className="roomslist-center">
                     {follows && follows.map(f => {
                         return (<div className="card border-success mb-3">
                                     <div className="card-header bg-transparent border-success">
-                                    <span className="left-button">{f.company_name}</span>
+                                    <span className="left-button">{f.companyName}</span>
                                     </div>
                                     <div className="card-body text-success">
                                     <div className="job-link">
-                                        <h5 className="card-title">{f.company_name}</h5>
+                                        <h5 className="card-title">{f.companyName}</h5>
                                     </div>
                                     <p className="card-text">{f.headquarters}</p>
                                     <p className="card-text">{f.industry}</p>

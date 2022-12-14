@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import { userApplyJobThunk, UserDeleteJobThunk } from "../../services/apply-thunks";
-import {createFollowThunk, deleteFollowThunk} from "../../services/follow-thunks";
+import {createFollowThunk, deleteFollowThunk, findFollowByUidThunk} from "../../services/follow-thunks";
 // import {useNavigate, Navigate} from "react-router";
 // import Apply from "../jobs/job-apply"
 // import Collect from "../jobs/job-collection"
@@ -67,7 +67,7 @@ export const SearchcompanyItem = (state) => {
      
      
     // };
-    const {follows = []} = useSelector((state) => state.follows)
+    const {follows} = useSelector((state) => state.follows)
     const isFollowed = !!(follows?.filter((item) => {
         if (item?.companyId === state.company?.company_id && item.follower._id === currentUser._id) {
             return true;
@@ -81,6 +81,7 @@ export const SearchcompanyItem = (state) => {
         console.log("ed", isFollowed)
         console.log("isfollow", isFollow)
         console.log(1)
+        dispatch(findFollowByUidThunk(currentUser._id))
       setIsFollow((isFollow)=>!isFollow);
     },[isFollowed]);
 
@@ -106,6 +107,7 @@ export const SearchcompanyItem = (state) => {
          } else if (
             isFollow && currentUser != null && currentUser.accountType === 'SEEKER'
          ) {
+
            dispatch(deleteFollowThunk(newDeleteFollow))
          }
          setIsFollow(isFollow => !isFollow)

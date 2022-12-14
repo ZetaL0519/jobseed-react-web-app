@@ -13,7 +13,6 @@ export const SearchItem = ({job}) => {
     // const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
 
-
     const { collects=[] } = useSelector((state) => state.collects);
 
     const { applys=[] } = useSelector((state) => state.applys);
