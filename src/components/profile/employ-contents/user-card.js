@@ -5,8 +5,14 @@ import "../../search-result/search.style.css";
 import {UpdateAcceptJobThunk, findAllUserApplyJobThunk} from "../../../services/apply-thunks.js";
 
 export const UserCard = ({apply}) => {
-    const [accept, setAccept] = useState('pending')
+    const {currentUser} = useSelector((state) => state.users)
+    const [accept, setAccept] = useState(apply.accept)
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+
+      setAccept("accept")
+    },[accept]);
 
     const handleAcceptBtn = () => {
         setAccept("accept")
@@ -16,13 +22,6 @@ export const UserCard = ({apply}) => {
         dispatch(UpdateAcceptJobThunk(newApply))
     }
 
-    const handleDeclineBtn = () => {
-        setAccept("decline")
-        const {applyBy,job,_id} = apply;
-        console.log(accept);
-        const newApply = {applyBy,job,_id, accept}
-        dispatch(UpdateAcceptJobThunk(newApply))
-    }
     return(
         <div className="card border-primary mb-3 cardsize">
               <div className="card-header bg-transparent border-primary">
@@ -35,14 +34,17 @@ export const UserCard = ({apply}) => {
                 <p className="card-text">{apply.applyBy.email}</p>
                 <p className="card-text">{apply.applyBy.biography}</p>
               </div>
+
+              {
+              currentUser !== null && currentUser.accountType === "EMPLOYER" &&
               <div className="card-footer bg-transparent border-primary">
+
                      <div className="left-button">
                         <button onClick={handleAcceptBtn} className="btn btn-danger">Accept</button>
                     </div>
-                    <div className="right-button">
-                        <button onClick={handleDeclineBtn} className="btn btn-dark">Decline</button>
-                   </div>
               </div>
+              }
+
         </div>
     )
 
