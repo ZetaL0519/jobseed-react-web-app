@@ -27,7 +27,8 @@
     color: #1C2331
 }
 .weather{
-    color: #868B94
+    color: #868B94;
+    font-size:20px
 }
 .weather-input{
     border: none;

@@ -9,19 +9,20 @@ const HomeIntro = () => {
     const {currentUser} = useSelector((state) => state.users)
     const [weather, setWeather] = useState("");
     const [city, setCity] = useState("Boston");
+    const [icon, setIcon] = useState(null);
     const getweather = () => {
         getWeather(city).then(w => {
             setWeather(w)
-            icon = icon = "http://openweathermap.org/img/w/" + w.data.main.icon + ".png"
+            const i = "http://openweathermap.org/img/w/" + w.data.weather[0].icon + ".png"
+            setIcon(i)
         })
     }
-    const icon = ""
 
     useEffect(() => {
         getweather()
         
     },[city])
-
+    console.log(icon)
     return (
         <div className="container">
             <div className="section-title">
@@ -43,12 +44,11 @@ const HomeIntro = () => {
                   <div className="intro-text">
                    Pinpoint you in fit position
                   </div> */}
-                 <div class="d-flex flex-column text-center mt-5 mb-4">
-
-                    <span class="small weather">{weather.data.weather[0].main}</span>
-                    <h6 class="display-4 mb-0 font-weight-bold temp"> {weather.data.main.temp} </h6>
+                 <div className="d-flex flex-column text-center mt-5 mb-4">
                     <input className="weather-input" type="text" value={city} onChange={(c) => setCity(c.target.value)}/>
-                    {/* <div id="icon"><img id="wicon" src={icon} alt="Weather icon" /></div> */}
+                    <h2 className="display-4 mb-0 font-weight-bold temp"> {weather.data.main.temp} </h2>
+                    {icon && <div id="icon"><img id="wicon" src={icon} alt="Weather icon" /></div>}
+                    <span className="small weather">{weather.data.weather[0].main}</span>
                     </div>
                     
                 </div>}
