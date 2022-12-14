@@ -120,10 +120,10 @@ export const SearchcompanyItem = (state) => {
         {isApply ? (
         <div>  
           <button className="btn btn-success disabled left-button" type="submit">
-            Applied
+            Followed
           </button>
           {/* <button className="btn btn-danger ms-2 float-end right-button" type="submit" onClick={() => addApplyBtn(job._id)}> */}
-            Withdraw
+            Unfollow
           {/* </button> */}
         </div>
         )
@@ -131,7 +131,7 @@ export const SearchcompanyItem = (state) => {
           (
           <div className="left-button">
             <button className="btn btn-success" type="submit">
-              Apply
+              Follow
             </button>
           </div>
         )
