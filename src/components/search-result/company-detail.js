@@ -43,7 +43,7 @@ const CompanyDetail = () => {
                 <br/>
                 <h2>About us</h2>
                 <p> {company.about_us}</p>
-                <h2>Who Applied</h2>
+                <h2>Who Followed</h2>
                 {/* <div className="roomslist-center">
                 {usersapplyjob && usersapplyjob.map(apply => {
                     return <UserCard user={apply.applyBy} key={apply._id}/>
