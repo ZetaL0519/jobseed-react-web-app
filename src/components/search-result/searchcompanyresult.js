@@ -29,7 +29,7 @@ const SearchcompanyResult = (searchInput = '') => {
       console.log(company, "aaaaaaa")
     return (
        <div className="container">
-            <h1> Company Search Results for {searchTerm}</h1>
+            <h1> Company Search Results for {company.company_name}</h1>
 
             <div className="search-result-grid mt-3">
                 <div className="roomslist-center">
