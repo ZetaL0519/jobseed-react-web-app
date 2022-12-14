@@ -91,9 +91,9 @@ const SeekerProfile = () => {
                                     <span className="left-button">{f.company_name}</span>
                                     </div>
                                     <div className="card-body text-success">
-                                    <Link to={`/company/details/${f.profile_id}`} state={f} className="job-link">
+                                    <div className="job-link">
                                         <h5 className="card-title">{f.company_name}</h5>
-                                    </Link>
+                                    </div>
                                     <p className="card-text">{f.headquarters}</p>
                                     <p className="card-text">{f.industry}</p>
                                     </div>

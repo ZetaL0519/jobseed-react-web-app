@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import {userCollectJobThunk, userDisCollectJobThunk}  from "../../services/collect-thunks"
 import { userApplyJobThunk, UserDeleteJobThunk } from "../../services/apply-thunks";
+import {createFollowThunk, deleteFollowThunk} from "../../services/follow-thunks";
 // import {useNavigate, Navigate} from "react-router";
 // import Apply from "../jobs/job-apply"
 // import Collect from "../jobs/job-collection"
@@ -66,33 +67,51 @@ export const SearchcompanyItem = (state) => {
      
      
     // };
-  
-  
-    // // console.log(isApplied, "isapplied")
-    const [isApply, setIsApply] = useState(false);
-    // useEffect(()=>{
-    //   setIsApply((isApply)=>!isApply);
-    // },[isApplied])
-    // const addApplyBtn = (_id) => {
-    //   const apply = {uid: currentUser._id, jid: _id};
-    //   if (
-    //       !isApply &&
-    //       currentUser != null &&
-    //       currentUser.accountType === 'SEEKER'
-    //     ) {
-    //       dispatch(userApplyJobThunk(apply));
-    //     } else if (
-    //       isApply &&
-    //       currentUser != null &&
-    //       currentUser.accountType === 'SEEKER'
-    //     ) {
-    //       dispatch(UserDeleteJobThunk(apply));
-    //     }
-        
-    //     setIsApply(isApply => !isApply);
-    //     window.location.reload();
-    // };
-// console.log(state.company,"state company")
+    const {follows = []} = useSelector((state) => state.follows)
+    const isFollowed = !!(follows?.filter((item) => {
+        if (item?.companyId === state.company?.company_id && item.follower._id === currentUser._id) {
+            return true;
+        }
+    }).length > 0);
+
+    const [isFollow, setIsFollow] = useState(isFollowed);
+
+    useEffect(()=>{
+        console.log("follows", follows)
+        console.log("ed", isFollowed)
+        console.log("isfollow", isFollow)
+        console.log(1)
+      setIsFollow((isFollow)=>!isFollow);
+    },[isFollowed]);
+
+    const [companyId, setCompanyId] = useState(state.company.company_id)
+    const [companyName, setCompanyName] = useState(state.company.company_name)
+    const [headquarters, setHeadquarters] = useState(state.company.headquarters)
+    const [industry, setIndustry] = useState(state.company.industry)
+    const [company_size, setCompanySize] = useState(state.company.company_size)
+    const [image_url, setImageURL] = useState(state.company.cover_image_url)
+    const [website, setWebsite] = useState(state.company.website)
+    const [about_us, setAboutUs] = useState(state.company.about_us)
+    const newFollowComp = {companyId, companyName, headquarters, industry, company_size, image_url, website, about_us}
+     const addApplyBtn = () => {
+
+         const newfollow = {company: newFollowComp, uid: currentUser._id}
+         const newDeleteFollow = {cid: companyId, uid: currentUser._id}
+         if (
+             !isFollow &&
+             currentUser != null &&
+             currentUser.accountType === 'SEEKER'
+         ) {
+           dispatch(createFollowThunk(newfollow));
+         } else if (
+            isFollow && currentUser != null && currentUser.accountType === 'SEEKER'
+         ) {
+           dispatch(deleteFollowThunk(newDeleteFollow))
+         }
+         setIsFollow(isFollow => !isFollow)
+         window.location.reload()
+     };
+
  
   return (
     <div className="card border-success mb-3">
@@ -115,29 +134,34 @@ export const SearchcompanyItem = (state) => {
         <p className="card-text">{state.company.headquarters}</p>
         <p className="card-text">{state.company.industry}</p>
       </div>
-     <div className="card-footer bg-transparent border-success">
 
-        {isApply ? (
-        <div>  
-          <button className="btn btn-success disabled left-button" type="submit">
-            Followed
-          </button>
-          {/* <button className="btn btn-danger ms-2 float-end right-button" type="submit" onClick={() => addApplyBtn(job._id)}> */}
-            Unfollow
-          {/* </button> */}
-        </div>
-        )
-          :
-          (
-          <div className="left-button">
-            <button className="btn btn-success" type="submit">
-              Follow
-            </button>
-          </div>
-        )
-        }
+
+     {
+        currentUser !== null && currentUser.accountType === 'SEEKER' && <div className="card-footer bg-transparent border-success">
+            {isFollow ? (
+            <div>
+              <button className="btn btn-success disabled left-button" type="submit">
+                Followed
+              </button>
+              <button className="btn btn-danger ms-2 float-end right-button" type="submit" onClick={() => addApplyBtn()}>
+                Unfollow
+              </button>
+            </div>
+            )
+              :
+              (
+              <div className="left-button">
+                <button className="btn btn-success" type="submit" onClick={() => addApplyBtn()}>
+                  Follow
+                </button>
+              </div>
+            )
+            }
+            </div>
+     }
+
       
-      </div>
+
     </div>
   );
 };

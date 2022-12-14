@@ -3,15 +3,15 @@ import { createFollow, deleteFollow, findFollowByUid } from "./follow-service";
 
 export const createFollowThunk = createAsyncThunk(
     'createFollow',
-    async(company) => {
-        return await createFollow(company.company, company.uid)
+    async(follow) => {
+        return await createFollow(follow.company, follow.uid)
     }
 )
 
 export const deleteFollowThunk = createAsyncThunk(
     'deleteFollow',
-    async(fid) => {
-        return await deleteFollow(fid)
+    async(follow) => {
+        return await deleteFollow(follow.uid, follow.cid)
     }
 )
 

@@ -20,14 +20,14 @@ export const SearchItem = ({job}) => {
 
     const isCollected = !!(collects?.filter((item) =>{
       // console.log(item, "dsdsds");
-      if(item?.job?._id == job?._id && item.collectBy == currentUser._id){
+      if(item?.job?._id === job?._id && item.collectBy === currentUser._id){
           return true;
       }
     }).length>0);
    
     const isApplied = !!(applys?.filter((item) =>{
       // console.log(item, "dsdsds");
-      if(item?.job?._id == job?._id && item.applyBy == currentUser._id){
+      if(item?.job?._id === job?._id && item.applyBy === currentUser._id){
           return true;
       }
     }).length>0);
