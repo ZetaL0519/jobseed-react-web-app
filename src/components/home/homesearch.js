@@ -66,13 +66,16 @@ const Search = () => {
                         <input className="" type="text" value={Title} placeholder="Enter Title" onChange={(e) => setTitle(e.target.value)} />
                         <i className="bi bi-search"></i>
                     </div>
-
+                </div>
+            </div>
+            <div className="mt-3 search-job-location">
+                <div className="row">
                     <div className="search-bar">
-                        <input className="" type="text" value={Location} placeholder="Enter location" onChange={(e) => setLocation(e.target.value)}/>
+                        <input className="" type="text" value={Location} placeholder="Enter location" onChange={(e) => setLocation(e.target.value)} />
                         <i className="bi bi-search"></i>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div className="search-button">
                 <Link to={`/search/${Location}/${Title}`} className="btn btn-dark">
                     Find
@@ -84,7 +87,7 @@ const Search = () => {
              <div className="mt-3 search-job-location">
                 <div className="row">
                     <div className="search-bar">
-                        <input className="" type="text" value={Comp} placeholder="Temp company search" onChange={(e) => setComp(e.target.value)} />
+                        <input className="" type="text" value={Comp} placeholder="Enter Company" onChange={(e) => setComp(e.target.value)} />
                         <i className="bi bi-search"></i>
                     </div>
                 </div>
