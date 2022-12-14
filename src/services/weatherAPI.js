@@ -10,3 +10,4 @@ export const getWeather = async (city) => {
     const weather = await axios.get(`${WEATHER_URL}lat=${geo.data[0].lat}&lon=${geo.data[0].lon}&appid=${API_KEY}`)
     return weather
 }
+

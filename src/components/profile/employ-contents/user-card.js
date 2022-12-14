@@ -37,6 +37,7 @@ export const UserCard = ({apply}) => {
 
               {
               currentUser !== null && currentUser.accountType === "EMPLOYER" &&
+
               <div className="card-footer bg-transparent border-primary">
 
                      <div className="left-button">
