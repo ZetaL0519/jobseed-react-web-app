@@ -13,6 +13,7 @@ export const SearchItem = ({job}) => {
     // const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
 
+
     const { collects=[] } = useSelector((state) => state.collects);
 
     const { applys=[] } = useSelector((state) => state.applys);
@@ -86,6 +87,9 @@ export const SearchItem = ({job}) => {
         ) {
           dispatch(UserDeleteJobThunk(apply));
         }
+        else {
+          return;
+        }
         
         setIsApply(isApply => !isApply);
         window.location.reload();
@@ -96,16 +100,16 @@ export const SearchItem = ({job}) => {
     <div className="card border-success mb-3">
       <div className="card-header bg-transparent border-success">
         <span className="left-button">{job.companyname}</span>
-
+        {currentUser !== null && currentUser.accountType === 'SEEKER' && 
         <span className="right-button" onClick={() => addCollectBtn(job._id)}>
-      
           {isCollect ? (
             <i id="myButton" className="bi bi-star-fill"></i>
           ) : (
             <i id="myButton" className="bi bi-star"></i>
           )}
         </span>
-      </div>
+      }
+      </div>   
       <div className="card-body text-success">
         <Link to={`/jobs/details/${job._id}`} className="job-link">
           <h5 className="card-title">{job.jobtitle}</h5>
@@ -113,7 +117,7 @@ export const SearchItem = ({job}) => {
         <p className="card-text">{job.location}</p>
         <p className="card-text">{job.salary}</p>
       </div>
-      {currentUser.accountType === 'SEEKER' &&  <div className="card-footer bg-transparent border-success">
+      {currentUser !== null && currentUser.accountType === 'SEEKER' &&  <div className="card-footer bg-transparent border-success">
 
         {isApply ? (
         <div>  
@@ -154,36 +158,3 @@ export const SearchItem = ({job}) => {
           </button>)
         }
         </div> */}
-
-
-
-    // const navigate = useNavigate()
-
-
-    // return (
-    //     <div className="card border-success mb-3">
-    //           <div className="card-header bg-transparent border-success">
-    //           <span className="left-button">{job.companyname}</span>
-    //           {currentUser && currentUser.accountType ==="SEEKER" && <Collect uid={currentUser._id} jid={job._id} />}
-    //           </div>
-    //           <div className="card-body text-success">
-    //             <Link to={`/jobs/details/${job._id}`} className="job-link">
-    //                 <h5 className="card-title">{job.jobtitle}</h5>
-    //             </Link>
-    //             <p className="card-text">{job.location}</p>
-    //             <p className="card-text">{job.salary}</p>
-    //           </div>
-
-    //           {
-    //             currentUser && currentUser.accountType === "SEEKER" &&
-    //               <div className="card-footer bg-transparent border-success">
-    //                      <div>
-    //                      <Apply uid={currentUser._id} jid={job._id}/>
-    //                     </div>
-    //               </div>
-    //           }
-
-
-    //     </div>
-    // )
-// }

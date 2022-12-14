@@ -21,6 +21,7 @@ import EditProfile from "./components/profile/update-profile.js"
 import UpdateUser from "./components/admin/update-user.js"
 import ProtectedRoute from "./components/authentication/protected-route.js"
 import Searchcompany from "./components/search-result/searchcompany";
+import CompanyDetail from "./components/search-result/company-detail.js";
 import {CreateJob} from "./components/jobs/job-create.js"
 
 import './App.css';
@@ -32,6 +33,7 @@ import SearchJobReducer from "./reducers/search-jobs-reducer";
 import JobsReducer from "./reducers/jobs-reducer";
 import CollectsReducer from "./reducers/collect-reducer";
 import ApplyReducer from "./reducers/apply-reducer";
+import SearchcompanyResult from "./components/search-result/searchcompanyresult.js";
 
 const store = configureStore({
     reducer: {
@@ -70,6 +72,8 @@ function App() {
                             <Route path="/applys/:jid" element={<UsersApply />}/>
                             <Route path="/profile/createjob" element={<CreateJob/>}/>
                             <Route path="/company" element={<Searchcompany/>} />
+                            <Route path="/company/search/:companySearchTerm" element={<SearchcompanyResult/>} />
+                            <Route path="/company/details/:cid" element={<CompanyDetail/>}/>
                         </Routes>
                         <Footer/>
                </BrowserRouter>

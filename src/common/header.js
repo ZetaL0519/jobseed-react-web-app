@@ -34,7 +34,9 @@ const Header = () => {
                   <Link to={`/search/${searchTerm}`} className="btn btn-outline-success my-2 my-sm-0" onClick={handleSearchBtn}>
                   <i className="fas fa-search"></i>
                   </Link>
+                  
                 </div>
+                
 
             </div>
             <ul className="navbar-nav float-right ">
