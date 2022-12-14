@@ -16,9 +16,9 @@ export const SearchcompanyItem = (state) => {
     // const collects = useSelector((state) => state.collects)
     const dispatch = useDispatch()
 
-    const { collects=[] } = useSelector((state) => state.collects);
+    // const { collects=[] } = useSelector((state) => state.collects);
 
-    const { applys=[] } = useSelector((state) => state.applys);
+    // const { applys=[] } = useSelector((state) => state.applys);
 
     // const isCollected = !!(collects?.filter((item) =>{
     //   // console.log(item, "dsdsds");
@@ -34,7 +34,7 @@ export const SearchcompanyItem = (state) => {
     //   }
     // }).length>0);
 
-    const [isCollect, setIsCollect] = useState(false);
+    // const [isCollect, setIsCollect] = useState(false);
 
     // useEffect(()=>{
     //   setIsCollect((isCollect)=>!isCollect);
@@ -67,23 +67,29 @@ export const SearchcompanyItem = (state) => {
      
      
     // };
+
+    // const {follows} = useSelector((state) => state.);
     const {follows} = useSelector((state) => state.follows)
+
+    console.log(follows,"followsssss")
+
     const isFollowed = !!(follows?.filter((item) => {
         if (item?.companyId === state.company?.company_id && item.follower._id === currentUser._id) {
             return true;
         }
     }).length > 0);
 
+    console.log(isFollowed)
     const [isFollow, setIsFollow] = useState(isFollowed);
 
     useEffect(()=>{
-        console.log("follows", follows)
-        console.log("ed", isFollowed)
-        console.log("isfollow", isFollow)
-        console.log(1)
-        dispatch(findFollowByUidThunk(currentUser._id))
+        
       setIsFollow((isFollow)=>!isFollow);
     },[isFollowed]);
+
+       useEffect(()=>{
+      setIsFollow(isFollow);
+    },[isFollow])
 
     const [companyId, setCompanyId] = useState(state.company.company_id)
     const [companyName, setCompanyName] = useState(state.company.company_name)
@@ -94,6 +100,8 @@ export const SearchcompanyItem = (state) => {
     const [website, setWebsite] = useState(state.company.website)
     const [about_us, setAboutUs] = useState(state.company.about_us)
     const newFollowComp = {companyId, companyName, headquarters, industry, company_size, image_url, website, about_us}
+
+
      const addApplyBtn = () => {
 
          const newfollow = {company: newFollowComp, uid: currentUser._id}
@@ -122,11 +130,11 @@ export const SearchcompanyItem = (state) => {
 
         <span className="right-button" >
       
-          {isCollect ? (
+          {/* {isCollect ? (
             <i id="myButton" className="bi bi-star-fill"></i>
           ) : (
             <i id="myButton" className="bi bi-star"></i>
-          )}
+          )} */}
         </span>
       </div>
       <div className="card-body text-success">
@@ -161,9 +169,6 @@ export const SearchcompanyItem = (state) => {
             }
             </div>
      }
-
-      
-
     </div>
   );
 };
